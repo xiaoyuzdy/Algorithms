@@ -1,5 +1,5 @@
 package E01;
-//打印数组
+
 public class ArraysPrint {
 	static void print(int a[][]) {
 		int count = 0;
