@@ -9,6 +9,7 @@ package E01;
 public class Different {
 
 	public static boolean check(String string) {
+		
 		//       \\i 引用第i个捕获组
 		return !string.matches(".*(.)(.*\\1)");
 	}
