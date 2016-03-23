@@ -12,6 +12,10 @@ public class ResizingArrayQueueOfStings<Item> {
 	private int head;// 队列头
 	private int taile;// 队列尾
 
+	public ResizingArrayQueueOfStings() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ResizingArrayQueueOfStings(int cap) {
 		a = (Item[]) new Object[cap];
