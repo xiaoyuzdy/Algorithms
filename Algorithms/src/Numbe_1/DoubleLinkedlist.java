@@ -1,4 +1,4 @@
-package Num1_1_03;
+package Numbe_1;
 
 /**
  * P104 T31 双向链表 相当于简化版的Linkedlist
@@ -180,7 +180,7 @@ class DoubleNode<T> {
 
 }
 
-public class Num_1_03_31 {
+public class DoubleLinkedlist {
 	public static void main(String[] args) {
 		DoubleNode<Integer> d = new DoubleNode<Integer>();
 		d.pushFirst(1);
@@ -202,3 +202,4 @@ public class Num_1_03_31 {
 	}
 
 }
+
