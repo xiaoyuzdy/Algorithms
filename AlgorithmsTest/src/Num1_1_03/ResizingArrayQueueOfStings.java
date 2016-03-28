@@ -68,7 +68,7 @@ public class ResizingArrayQueueOfStings<Item> {
 	}
 
 	public static void main(String[] args) {
-		ResizingArrayQueueOfStings<Integer> r = new ResizingArrayQueueOfStings<Integer>(2);
+		ResizingArrayQueueOfStings<Integer> r = new ResizingArrayQueueOfStings<Integer>(1);
 		for (int i = 0; i < 10; i++) {
 			r.enqueue(i);
 			if (i >= 5) {
