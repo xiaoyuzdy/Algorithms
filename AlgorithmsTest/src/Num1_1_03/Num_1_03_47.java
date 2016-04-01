@@ -62,9 +62,7 @@ public class Num_1_03_47 {
 		while(!c.isEmpty()){
 			System.out.println(c.pop()); //4 3 2 1 0 5 6
 		}
-		
-		
-		
+				
 	}
 
 }

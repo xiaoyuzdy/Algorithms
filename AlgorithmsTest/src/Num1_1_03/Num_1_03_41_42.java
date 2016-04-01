@@ -2,7 +2,8 @@ package Num1_1_03;
 
 /**
  * P106 T42 41题参考42题
- * 测试通过，栈复制时要加个中转栈来保持原来栈中的顺序
+ * 测试通过，栈复制时要加个中转数组来储存原来栈中的顺元素
+ * 在反向将数组中的元素给新的栈和原来的栈
  * @author he
  *
  */
@@ -10,8 +11,8 @@ package Num1_1_03;
 class Stack<Item> {
 	private Node first;
 	private int N;
-	private Stack<Item> temp;
-
+	private Item temp2[];
+	
 	private class Node {
 		Item item;
 		Node next = null;
@@ -41,17 +42,23 @@ class Stack<Item> {
 
 	public Stack(Stack<Item> stack) {
 	    temp(stack);
-		//从中转栈中取出，保持原来的顺序
-		 while(!temp.isEmpty()){
-		 this.push((Item)temp.pop());
-		 }
+
+	    for(int i=temp2.length-1;i>=0;i--){
+	    	this.push(temp2[i]);
+	    	stack.push(temp2[i]);
+	    }
+	    
+	    
 	}
-	//中转栈
+	//中转
+	@SuppressWarnings("unchecked")
 	private void temp(Stack<Item> stack){
-		temp=new Stack<Item>();
-		while (!stack.isEmpty()) {
-			temp.push((Item) stack.pop());
+		temp2= (Item [])new Object[stack.N];
+		int  i=0;
+		while(!stack.isEmpty()){
+			temp2[i++]=stack.pop();
 		}
+		
 	}
 	
 
