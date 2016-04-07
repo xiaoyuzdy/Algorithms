@@ -8,7 +8,9 @@ package Numbe_1;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
+ * 	P110
  * 统计所有和为0的三整数元组的数量
+ *增长的数量级N3  （N的3次方）
  * 
  * @author he
  *
