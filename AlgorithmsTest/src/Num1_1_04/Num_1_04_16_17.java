@@ -12,6 +12,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Num_1_04_16_17 {
 
+	//最近的一对
 	public static String approach(double a[]) {
 		Arrays.sort(a);
 		double temp = 100000;
@@ -25,6 +26,7 @@ public class Num_1_04_16_17 {
 		return "min:" + temp + " index:" + index + "," + (index + 1);
 	}
 
+	//最远的一对
 	public static String distant(double a[]) {
 
 		Arrays.sort(a);
