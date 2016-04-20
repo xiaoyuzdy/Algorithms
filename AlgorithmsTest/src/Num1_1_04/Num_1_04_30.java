@@ -9,7 +9,6 @@ import edu.princeton.cs.algs4.Stack;;
  *
  * @author he
  * ²âÊÔÍ¨¹ı
- *
  */
 
 class Deque1<T> {

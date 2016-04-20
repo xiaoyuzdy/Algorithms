@@ -23,12 +23,14 @@ public class UF {
 	 * 分析：find()操作很快，但union()都需要扫描整个id[]数组，数组访问次数在（N+3）到（2N+1）之间
 	 * 最坏情况下调用union()为N-1次，所以quick-find算法是平方级别的
 	 * 
-	 * args:4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7
-	 *   结果：2 components
+	 * args:4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7 结果：2 components
+	 * 
 	 * @param p
 	 * @param q
 	 */
-	public void union(int p, int q) {
+
+	/*
+	 public void union(int p, int q) {
 		int pID = find(p);
 		int qID = find(q);
 		if (pID == qID) {
@@ -41,11 +43,42 @@ public class UF {
 			}
 		}
 		count--;
-
 	}
-
 	public int find(int p) {
 		return id[p];
+	}
+*/
+	
+	
+	
+	
+	/**
+	 * quick-union ,quick-find的改良版 
+	 * 根触点： p=id[p]，即触点p的值和id[p]的值相等，则p为根触点
+	 * 当且仅当分别由两个触点开始的这个过程到达了同一个根触点时，它们存在于同一个连通分量之中
+	 * args:4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7
+	 * @param p
+	 * @param q
+	 * @return
+	 */
+	
+	//重命名p,q的根节点 或称为根触点，重命名p所在的分量的根触点
+	public void union(int p,int q){
+		int pRoot=find(p);
+		int qRoot=find(q);
+		if (qRoot==pRoot) {
+			return;
+		}
+		id[pRoot]=qRoot;
+		count--;
+	}
+	
+	//找到触点的根节点
+	public int find(int p){
+		while(p!=id[p]){
+			p=id[p];
+		}
+		return p;
 	}
 
 	public boolean connected(int p, int q) {
@@ -66,7 +99,7 @@ public class UF {
 			}
 			uf.union(p, q);
 		}
-		System.out.println(uf.count() + " components");//2
+		System.out.println(uf.count() + " components");// 2
 	}
 
 }
