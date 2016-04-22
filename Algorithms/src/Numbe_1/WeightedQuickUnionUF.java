@@ -8,7 +8,7 @@ package Numbe_1;
  */
 public class WeightedQuickUnionUF {
 	private int id[];// 触点索引
-	private int sz[];// 模拟树的高度但不等同于树的高度
+	private int sz[];// 树的结点
 	private int count;// 连通分量的数量
 
 	public WeightedQuickUnionUF(int N) {
