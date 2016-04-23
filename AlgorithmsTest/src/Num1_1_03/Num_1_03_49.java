@@ -23,7 +23,11 @@ class Que<T> {
 			// 将left中的元素给right
 			right.push(left.pop());
 		}
-		return right.pop();
+		T first=right.pop();
+		while(!right.isEmpty()){
+			left.push(right.pop());
+		}
+		return first;
 	}
 
 	int size() {
