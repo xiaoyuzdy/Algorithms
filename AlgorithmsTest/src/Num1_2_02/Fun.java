@@ -15,16 +15,16 @@ public class Fun {
 		for (int i = 0; i < 5; i++) {
 			queue.enqueue(i);
 		}
-        Integer t=queue.dequeue();
-        int count=queue.size();
-        queue.enqueue(t);
-        while(count-->0){
-        	queue.enqueue(queue.dequeue());
-        }
-        
-        while(!queue.isEmpty()){
-        	System.out.print(queue.dequeue()+" ");
-        }
-        
-	}	
+		Integer t = queue.dequeue();
+		int count = queue.size();
+		queue.enqueue(t);
+		while (count-- > 0) {
+			queue.enqueue(queue.dequeue());
+		}
+
+		while (!queue.isEmpty()) {
+			System.out.print(queue.dequeue() + " ");
+		}
+
+	}
 }

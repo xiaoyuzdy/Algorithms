@@ -28,25 +28,7 @@ class MergeQueue {
 	}
 
 	private static boolean less(Queue<Comparable> queue1, Queue<Comparable> queue2) {
-		boolean t;
-		Comparable q1 = queue1.dequeue();
-		Comparable q2 = queue2.dequeue();
-		int count=0;//queue中元素的数量
-		t = q1.compareTo(q2) < 0 ? true : false;
-		//保证queue1的顺序
-		count=queue1.size();
-		queue1.enqueue(q1);
-		while (count-->0) {
-			queue1.enqueue(queue1.dequeue());
-		}
-
-		//保证queue2的顺序
-		count=queue2.size();
-		queue2.enqueue(q2);
-		while (count-->0) {
-			queue2.enqueue(queue2.dequeue());
-		}
-		return t;
+		return queue1.peek().compareTo(queue2.peek())<0;
 	}
 
 	public static void show(Queue<Comparable> queue) {
@@ -61,21 +43,21 @@ public class Num_2_02_14 {
 		Queue queue1 = new Queue();
 		Queue queue2 = new Queue();
 
-		for (Integer i = 0; i < 10; i++) {
-			if (i < 5) {
-				queue1.enqueue(i);
-			}
-			if (i > 5) {
-				queue2.enqueue(i);
-			}
-		}
+//		for (Integer i = 0; i < 10; i++) {
+//			if (i < 5) {
+//				queue1.enqueue(i);
+//			}
+//			if (i > 5) {
+//				queue2.enqueue(i);
+//			}
+//		}
 
 		//结果 12345
-//		queue1.enqueue(1);
-//		queue1.enqueue(3);
-//		queue1.enqueue(5);
-//		queue2.enqueue(2);
-//		queue2.enqueue(4);
+		queue1.enqueue(1);
+		queue1.enqueue(3);
+		queue1.enqueue(5);
+		queue2.enqueue(2);
+		queue2.enqueue(4);
 		MergeQueue.show(MergeQueue.mergeQueue(queue1, queue2));//0 1 2 3 4 6 7 8 9 
 	}
 }
