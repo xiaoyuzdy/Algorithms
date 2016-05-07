@@ -18,8 +18,6 @@ class ListNode {
 }
 
 class listNodeMerge {
-	private static ListNode temp;
-
 	public static ListNode sort(ListNode list) {
 		if (list == null || list.next == null) {
 			return list;
