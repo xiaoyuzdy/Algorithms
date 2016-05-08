@@ -3,16 +3,19 @@ package Num1_2_02;
 import java.util.Random;
 
 /**
- * P181 T18 符合要求
+ * P181 T18 只能写出这样了
+ * 不足打乱后的顺序是一定的
  * 
  * @author he
  *
  */
 
 class RandomList {
-	private static Random random;
+	private static Random random = new Random();
+	private static int i ;
 
 	public static ListNode random(ListNode list) {
+		random = new Random();
 		if (list == null || list.next == null) {
 			return list;
 		}
@@ -34,24 +37,21 @@ class RandomList {
 		ListNode t = new ListNode(-1);
 		ListNode temp = t;
 		/**
-		 * 随机数如果这么写  会导致链表不完整  应该是没有进行同步控制的原因
-		 * while (list1 != null && list2 != null) { random = new Random(); if
-		 * (random.nextBoolean()) { temp.next = list1; list1 = list1.next; }
-		 * else { temp.next = list2; list2 = list2.next; } temp = temp.next; }
-		 * if (list1 == null) { temp.next = list2; } else { temp.next = list1; }
+		 * 随机数如果这么写 会导致链表不完整 应该是没有进行同步控制的原因 while (list1 != null && list2 !=
+		 * null) { random = new Random(); if (random.nextBoolean()) { temp.next
+		 * = list1; list1 = list1.next; } else { temp.next = list2; list2 =
+		 * list2.next; } temp = temp.next; } if (list1 == null) { temp.next =
+		 * list2; } else { temp.next = list1; }
 		 * 
 		 * 按照下面这样写可以保证链表的完整性和随机性
 		 */
+		i=random.nextInt()*10;
 		while (list1 != null && list2 != null) {
-			random = new Random();
-			if (list1.val <= list2.val) {
-				if (random.nextBoolean()) {
-					temp.next = list1;
-					list1 = list1.next;
-				} else {
-					temp.next = list2;
-					list2 = list2.next;
-				}
+			i++;
+			boolean b = i % 2 == 0 ? true : false;
+			if (b) {
+				temp.next = list1;
+				list1 = list1.next;
 			} else {
 				temp.next = list2;
 				list2 = list2.next;
@@ -81,12 +81,12 @@ class RandomList {
 public class Num_2_02_18 {
 	public static void main(String[] args) {
 		ListNode l1 = new ListNode(1);
-		l1.next = new ListNode(10);
-		l1.next.next = new ListNode(15);
-		l1.next.next.next = new ListNode(9);
-		l1.next.next.next.next=new ListNode(99);
-		l1.next.next.next.next.next=new ListNode(20);
-	    RandomList.show(l1);
+		l1.next = new ListNode(2);
+		l1.next.next = new ListNode(3);
+		l1.next.next.next = new ListNode(4);
+		l1.next.next.next.next = new ListNode(5);
+		l1.next.next.next.next.next = new ListNode(6);
+		RandomList.show(l1);
 		RandomList.random(l1);
 		System.out.println("---------------------------------");
 		RandomList.show(l1);
