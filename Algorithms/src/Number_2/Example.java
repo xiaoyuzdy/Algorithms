@@ -44,6 +44,7 @@ public class Example {
 	
 	public static void main(String[] args) {
 		String[] a={"A","B","C"};
+		sort(a);
 		assert isShorted(a);//断言 防止程序进入死循环导致系统崩溃
 		show(a);
 		System.out.println(isShorted(a));
