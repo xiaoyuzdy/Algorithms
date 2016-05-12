@@ -48,7 +48,7 @@ public class Quick3way {
 	}
 
 	// ½»»»ÔªËØÎ»ÖÃ
-	public static void exch(Comparable[] a, int i, int j) {
+	private static void exch(Comparable[] a, int i, int j) {
 		Comparable t = a[i];
 		a[i] = a[j];
 		a[j] = t;
@@ -64,7 +64,7 @@ public class Quick3way {
 	
 	public static void main(String[] args) {
 //		String[] a = { "A", "U", "I", "C", "K", "S", "O", "R", "T", "E", "X", "A", "M", "P", "L", "E" };
-		Integer a[] = { 2, 3, 5, 1, 6, 7, 9, 4, 8 };
+		Integer a[] = { 1,1,2,2,2,2,2,2,3,4,99,5,6,7 };
 		sort(a);
 		show(a);
 	}
