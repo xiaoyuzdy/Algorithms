@@ -15,7 +15,8 @@ class Qu {
 	private static int match;
 
 	public static int match(int a[], int b[]) {
-		matching(a, b);
+		// matching(a, b);
+		matching2(a, b);
 		return match;
 	}
 
@@ -30,6 +31,19 @@ class Qu {
 				match++;
 				b[t] = -1;// 将之前匹配到的位置设置为-1 防止下次仍能匹配到
 				Arrays.sort(b);// 将b重新排序，保证b的有序性
+			}
+		}
+	}
+
+	private static void matching2(int a[], int b[]) {
+		count = a.length + b.length;// 螺丝和螺帽的总数量
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b.length; j++) {
+				if (b[j] == a[i]) {
+					count = count - 2;
+					match++;
+					b[j] = -1;// 将之前匹配到的位置设置为-1 防止下次仍能匹配到
+				}
 			}
 		}
 	}
