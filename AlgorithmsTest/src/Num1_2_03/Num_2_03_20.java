@@ -31,13 +31,15 @@ class QuickW {
 			int left = s.pop();
 			// 如果最大索引小于等于左边索引，说明结束了
 			if (right <= left)
-				continue;
+				break;
 
 			int i = part(a, left, right);
+			//左边排序
 			if (left < i - 1) {
 				s.push(left);
 				s.push(i - 1);
 			}
+			//右边排序
 			if (i + 1 < right) {
 				s.push(i + 1);
 				s.push(right);
@@ -91,7 +93,7 @@ class QuickW {
 
 public class Num_2_03_20 {
 	public static void main(String[] args) {
-		int a[] = { 3, 5, 6, 8, 4, 9, 2, 1 };
+		int a[] = { 3, 5, 6, 8,44,66,77,55,33,22,4, 9, 2, 1 };
 		QuickW.sort(a);
 		QuickW.show(a);
 	}
