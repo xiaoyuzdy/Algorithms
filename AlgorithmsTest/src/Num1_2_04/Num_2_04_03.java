@@ -135,6 +135,7 @@ class unorderedList {
 		while (j-- > 0) {
 			if (queue.peek() == max) {
 				queue.dequeue();
+				break;
 			} else {
 				queue.enqueue(queue.dequeue());
 			}
