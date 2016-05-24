@@ -3,9 +3,9 @@ package Num1_2_04;
 import java.util.LinkedList;
 
 /**
- * P210 24 用链表实现一个优先队列 基于linkedlist，由于储存时是从index=0开始的，所以在上浮和下沉出做了相应的修改
- * 能力有限只会这样写了，如果你能按照书中要求使用有三个方向的结点，请借我参考参考
- * 
+ * P210 24 用链表实现一个优先队列 按书中的提示涉及到结点表示完美二叉树以及二叉树遍历等问题，是后面章节的内容未学到
+ * 本题目借助linkedlist部分必要方法，实现与数组类似 由于储存时是从index=0开始的，所以在上浮和下沉出做了相应的修改
+ *
  * @author he
  *
  */
@@ -26,15 +26,10 @@ class MaxPQbyList {
 
 	public int delMax() {
 		int max = linkedList.get(0);
-		if (N - 1 == 0) {
-			N--;
-			return max;
-		} else {
-			exch(0, --N);// 将其和最后一个元素交换
-			linkedList.removeLast();// 移除最后一个元素
-			sink(0);// 下沉
-			return max;
-		}
+		exch(0, --N);// 将其和最后一个元素交换
+		linkedList.removeLast();// 移除最后一个元素
+		sink(0);// 下沉
+		return max;
 
 	}
 
@@ -69,15 +64,6 @@ class MaxPQbyList {
 
 	// 在linkedlist中交换元素
 	private void exch(int i, int j) {
-		/*
-		 * 这样写也是正确的
-		 */
-		// int Itemp = linkedList.get(i);
-		// int Jtemp = linkedList.get(j);
-		// linkedList.remove(i);
-		// linkedList.remove(j - 1);
-		// linkedList.add(i, Jtemp);
-		// linkedList.add(j, Itemp);
 
 		int temp = linkedList.get(i);
 		linkedList.set(i, linkedList.get(j));
