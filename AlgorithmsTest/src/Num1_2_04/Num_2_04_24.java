@@ -11,6 +11,7 @@ import java.util.LinkedList;
  */
 
 class MaxPQbyList {
+	
 	private int N = 0;
 	private LinkedList<Integer> linkedList;
 
