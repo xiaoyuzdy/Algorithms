@@ -10,6 +10,7 @@ package Num1_2_04;
 class MaxPQ {
 	private int a[];
 	private int N = 0;
+	private int min = 10000000;
 
 	public MaxPQ(int maxN) {
 		a = new int[maxN + 1];
@@ -40,6 +41,7 @@ class MaxPQ {
 	}
 
 	public void insert(int v) {
+		min = v < min ? v : min;//找到min
 		a[++N] = v;
 		swim(N);
 	}
@@ -52,41 +54,8 @@ class MaxPQ {
 
 	}
 
-	/**
-	 * 进行最后一层个数+2次比较，常数级
-	 * 
-	 * @return
-	 */
 	public int min() {
-		int i = 1;
-		int j = 1;
-		while (2 * i + 1 <=N) {
-			i = 2 * i + 1;
-		}
-
-		// 找到倒数第二层右边最小的元素
-		if (less(i - 1, i)) {
-			i = i - 1;
-		}
-
-		while (2 * j <=N) {
-			j = 2 * j;
-		}
-
-		// 找到最后一层最小的元素
-		int min = j;
-		for (int k = j; k < N; k++) {
-			if (less(k, min)) {
-				min = k;
-			}
-		}
-
-		if (less(i, min)) {
-			return a[i];
-		} else {
-			return a[min];
-		}
-
+		return min;
 	}
 
 	private boolean less(int i, int j) {
@@ -119,13 +88,14 @@ public class Num_2_04_27 {
 
 	public static void main(String[] args) {
 		MaxPQ mPq = new MaxPQ(16);
-		for (int i = 0; i < 16; i++) {
+		for (int i = 16; i > 0; i--) {
 			mPq.insert(i);
 		}
-//		mPq.show();
-		System.out.println("min: " + mPq.min());
+		// mPq.show();
+		System.out.println("min: " + mPq.min());// 1
 		while (!mPq.isEmpty()) {
 			System.out.println(mPq.delMax());
 		}
+
 	}
 }
