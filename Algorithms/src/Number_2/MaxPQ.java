@@ -78,6 +78,12 @@ public class MaxPQ<key extends Comparable<key>> {
 	public int size() {
 		return N;
 	}
+	
+	public void show(){
+		for(int i=1;i<=N;i++){
+			System.out.println(pq[i]);
+		}
+	}
 
 	public static void main(String[] args) {
 		MaxPQ<Integer> mPq = new MaxPQ<Integer>(10);
@@ -85,7 +91,8 @@ public class MaxPQ<key extends Comparable<key>> {
 		mPq.insert(100);
 		mPq.insert(0);
 		mPq.insert(99);
-
+//        mPq.show();
+		
 		while (!mPq.isEmpty()) {
 			System.out.println(mPq.delMax());
 		}

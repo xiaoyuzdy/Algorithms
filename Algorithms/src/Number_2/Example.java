@@ -7,6 +7,7 @@ package Number_2;
  *
  */
 public class Example {
+	
 	// ÅÅĞò
 	public static void sort(Comparable[] a) {
 		/* ¼ûËã·¨2.1 2.2 2.3 2.4 µÈ */

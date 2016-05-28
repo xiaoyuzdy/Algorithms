@@ -7,7 +7,6 @@ package Number_2;
  *
  */
 public class Heap {
-
 	public static void sort(Comparable[] a) {
 		int N = a.length;
 		// ππ‘Ï∂—”––Ú
