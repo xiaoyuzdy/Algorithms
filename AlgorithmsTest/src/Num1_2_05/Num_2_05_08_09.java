@@ -33,7 +33,7 @@ class myComparable implements Comparator<Map.Entry<String, Integer>> {
 
 class Frequency {
 	private static Map<String, Integer> map = new HashMap<String, Integer>();
-	private static List<Entry<String, Integer>> list;
+	private static List<Map.Entry<String, Integer>> list;
 
 	// 用于第8题的方法
 	public static void put(String k) {
