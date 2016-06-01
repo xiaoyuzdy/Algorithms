@@ -47,7 +47,8 @@ public class J9 {
 	public static void main(String[] args) {
 		ListNode1 l1 = new ListNode1(1);
 		l1.next = new ListNode1(2);
-		System.out.println(FindKthToTail(l1, 1).toString());
+		System.out.println(l1);
+//		System.out.println(FindKthToTail(l1, 1).toString());
 
 	}
 }

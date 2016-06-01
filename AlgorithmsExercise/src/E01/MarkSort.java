@@ -35,7 +35,7 @@ class myCompare implements Comparator<Map.Entry<String, Integer>>{
 	@Override
 	public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
 		//获取V映射进行比较
-		return o1.getValue().compareTo(o2.getValue());
+		return o2.getValue().compareTo(o1.getValue());
 	}
 	
 }
