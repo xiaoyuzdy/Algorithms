@@ -1,10 +1,9 @@
 package Number_3;
 
-import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 
 /**
- * 算法 3.1
- * P236 顺序查找（基于无序链表） 链表以栈的形式，所以keys()返回的是put()的逆序
+ * 算法 3.1 P236 顺序查找（基于无序链表）
  * 
  * @author he
  *
@@ -93,11 +92,16 @@ public class SequentialSearchST<Key, Value> {
 		}
 	}
 
+	/**
+	 * 因为链表的实现时以栈的形式，所以这里使用栈，这样就能保证return后得到的顺序数put时的顺序
+	 * 
+	 * @return
+	 */
 	public Iterable<Key> keys() {
-		Queue<Key> queue = new Queue<Key>();
+		Stack<Key> stack = new Stack<Key>();
 		for (Node x = first; x != null; x = x.next)
-			queue.enqueue(x.key);
-		return queue;
+			stack.push(x.key);
+		return stack;
 	}
 
 	public static void main(String[] args) {
