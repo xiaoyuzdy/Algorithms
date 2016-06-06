@@ -11,6 +11,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 	private Value values[];
 	private int N = 0;// 元素数量
 
+	@SuppressWarnings("unchecked")
 	public BinarySearchST(int capacity) {
 		keys = (Key[]) new Comparable[capacity];
 		values = (Value[]) new Object[capacity];
@@ -108,6 +109,10 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 			throw new RuntimeException("key can't be null");
 		}
 		int i = rank(key);
+		// 不包含key
+		if (i == N || keys[i] != key) {
+			return;
+		}
 		for (int j = i; j < N - 1; j++) {
 			keys[j] = keys[j + 1];
 			values[j] = values[j + 1];
