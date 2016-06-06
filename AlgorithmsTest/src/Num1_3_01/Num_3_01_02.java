@@ -18,17 +18,27 @@ class ArrayST<Key extends Comparable<Key>, Value> {
 		values = (Value[]) new Object[size];
 	}
 
+	private int select(Key key) {
+		for (int i = 0; i < N; i++) {
+			if (keys[i].equals(key)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	public void put(Key key, Value value) {
+		if (select(key) != -1) {
+			values[select(key)] = value;
+		}
 		keys[N] = key;
 		values[N] = value;
 		N++;
 	}
 
 	public Value get(Key key) {
-		for (int i = 0; i < N; i++) {
-			if (keys[i].equals(key)) {
-				return values[i];
-			}
+		if (select(key) != -1) {
+			return values[select(key)];
 		}
 		return null;
 	}
@@ -40,6 +50,7 @@ public class Num_3_01_02 {
 		ArrayST<String, Integer> st = new ArrayST<String, Integer>(10);
 		st.put("A", 1);
 		st.put("B", 2);
+		st.put("A", 3);
 		System.out.println(st.get("A"));
 	}
 
