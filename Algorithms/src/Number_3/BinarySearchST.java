@@ -1,5 +1,7 @@
 package Number_3;
 
+import edu.princeton.cs.algs4.Queue;
+
 /**
  * P239 算法3.2 二分查找（基于有序数组）
  * 
@@ -110,7 +112,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 		}
 		int i = rank(key);
 		// 不包含key
-		if (i == N || keys[i] != key) {
+		if (i == N || keys[i].compareTo(key) != 0) {
 			return;
 		}
 		for (int j = i; j < N - 1; j++) {
@@ -173,17 +175,28 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> {
 		}
 
 	}
+	
+	public Iterable<Key> key(){
+		Queue<Key> queue=new Queue<Key>();
+		for(int i=0;i<N;i++){
+			queue.enqueue(keys[i]);
+		}
+		return queue;
+	}
+	
 
 	public static void main(String[] args) {
 		BinarySearchST<String, Integer> st = new BinarySearchST<String, Integer>(10);
 		st.put("A", 3);
-		st.put("B", 2);
-		st.put("C", 1);
+		st.put("C", 2);
+		st.put("B", 1);
+		System.out.println(st.key());//A B C
 		System.out.println(st.get("B"));
 		System.out.println(st.ceiling("D"));// null
 		st.delete("A");
 		System.out.println(st.get("A"));// null
 		System.out.println(st.floor("A"));// null
+		System.out.println(st.key());// B C
 
 	}
 
