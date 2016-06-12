@@ -1,5 +1,7 @@
 package Number_3;
 
+import java.util.concurrent.ForkJoinPool.ManagedBlocker;
+
 /**
  * P252 算法3.3 基于二叉查找树的符号表(有序)
  * 
@@ -66,9 +68,10 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 	// 添加键值对
 	public void put(Key key, Value value) {
-		root=put(root, key, value);
+		root = put(root, key, value);
 	}
 
+	// 始终返回的是根结点
 	private Node put(Node x, Key key, Value value) {
 		// 如果key存在则更新，否则添加新结点
 		if (x == null) {
@@ -87,11 +90,113 @@ public class BST<Key extends Comparable<Key>, Value> {
 		return x;
 	}
 
+	// 返回最小键
+	public Key min() {
+		return min(root).key;
+	}
+
+	private Node min(Node x) {
+		if (x.left == null) {
+			return x;
+		}
+		return min(x.left);
+	}
+
+	// 返回最大键
+	public Key max() {
+		return max(root).key;
+	}
+
+	private Node max(Node x) {
+		if (x.right == null) {
+			return x;
+		} else {
+			return max(x.right);
+		}
+	}
+
+	// 向下取整，小于等于key的最大键
+	public Key floor(Key key) {
+		Node x = floor(root, key);
+		if (x == null) {
+			return null;
+		} else {
+			return x.key;
+		}
+	}
+
+	/**
+	 * 如果key小于根节点则向下取整一定左子树中， 如果大于根结点，则可能在右子树中如果没有，则根结点就是满足条件的key
+	 *
+	 * @param x
+	 * @param key
+	 * @return
+	 */
+	private Node floor(Node x, Key key) {
+		if (x == null) {
+			return null;
+		}
+
+		int cmp = key.compareTo(x.key);
+		if (cmp < 0) {
+			return floor(x.left, key);
+		}
+
+		Node t = floor(x.right, key);
+		if (t != null) {
+			return t;
+		} else {
+			return x;
+		}
+
+	}
+
+	// 向上取整,大于等于key的最小键
+	public Key ceiling(Key key) {
+		Node x = ceiling(root, key);
+		if (x == null) {
+			return null;
+		} else {
+			return x.key;
+		}
+	}
+
+	/**
+	 * 如果key大于根结点则向上取整一定在右子树中，如果key小于根结点，则可能在左子树中， 如果为未命中，则根结点就是向上取整的值
+	 * 
+	 * @param x
+	 * @param key
+	 * @return
+	 */
+	private Node ceiling(Node x, Key key) {
+		if (x == null) {
+			return null;
+		}
+		int cmp = key.compareTo(x.key);
+		if (cmp > 0) {
+			return ceiling(x.right, key);
+		}
+
+		Node t = ceiling(x.left, key);
+		if (t != null) {
+			return t;
+		} else {
+			return x;
+		}
+
+	}
+
 	public static void main(String[] args) {
-		BST<String,Integer> bst=new BST<String, Integer>();
-		bst.put("A", 1);
+		BST<String, Integer> bst = new BST<String, Integer>();
+		bst.put("S", 0);
+		bst.put("E", 1);
 		bst.put("B", 2);
-		System.out.println(bst.get("B"));
-		
+		bst.put("E", 6);
+		System.out.println(bst.get("E"));
+		System.out.println(bst.min());
+		System.out.println(bst.max());
+		System.out.println(bst.floor("A"));
+		System.out.println(bst.ceiling("C"));
+
 	}
 }
