@@ -1,7 +1,5 @@
 package Number_3;
 
-import java.util.concurrent.ForkJoinPool.ManagedBlocker;
-
 /**
  * P252 算法3.3 基于二叉查找树的符号表(有序)
  * 
@@ -173,6 +171,9 @@ public class BST<Key extends Comparable<Key>, Value> {
 			return null;
 		}
 		int cmp = key.compareTo(x.key);
+		if (cmp == 0) {
+			return x;
+		}
 		if (cmp > 0) {
 			return ceiling(x.right, key);
 		}
@@ -182,6 +183,63 @@ public class BST<Key extends Comparable<Key>, Value> {
 			return t;
 		} else {
 			return x;
+		}
+
+	}
+
+	// 根据索引查找键
+	public Key select(int k) {
+		return select(root, k).key;
+	}
+
+	/**
+	 * 如果左子树的结点数大于k，则递归地在左子树中查找排名为k的键； 如果t等于k，在返回根结点的键；
+	 * 如果t小于k，递归地在右子树中查找排名为（k-t-1）的键
+	 * 
+	 * @param x
+	 * @param k
+	 * @return
+	 */
+	private Node select(Node x, int k) {
+		// 返回排名为k的结点
+		if (x == null) {
+			return null;
+		}
+		int t = size(x.left);
+		if (t > k) {
+			return select(x.left, k);
+		} else if (t < k) {
+			return select(x.right, k - t - 1);
+		} else {
+			return x;
+		}
+	}
+
+	// 根据键返回下下标（排名）
+	public int rank(Key key) {
+		return rank(root, key);
+	}
+
+	/**
+	 * 如果给定的键和根结点的键相等，返回根节点左子树的结点总数t size(x.left); 如果给定的键比根结点的键小,递归计算在做子树的排名；
+	 * 如果给定的键比根结点的键大，返回根结点左子树结点总数t+1+它在右子树的排名
+	 * 
+	 * @param x
+	 * @param key
+	 * @return
+	 */
+	private int rank(Node x, Key key) {
+		if (x == null) {
+			return 0;
+		}
+
+		int cmp = key.compareTo(x.key);
+		if (cmp < 0) {
+			return rank(x.left, key);
+		} else if (cmp > 0) {
+			return 1 + size(x.left) + rank(x.right, key);
+		} else {
+			return size(x.left);
 		}
 
 	}
@@ -197,6 +255,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.max());
 		System.out.println(bst.floor("A"));
 		System.out.println(bst.ceiling("C"));
+		System.out.println(bst.select(1));
+		System.out.println(bst.rank("S"));
 
 	}
 }
