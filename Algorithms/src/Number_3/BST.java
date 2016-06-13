@@ -1,5 +1,7 @@
 package Number_3;
 
+import edu.princeton.cs.algs4.Queue;
+
 /**
  * P252 算法3.3 基于二叉查找树的符号表(有序)
  * 
@@ -307,6 +309,38 @@ public class BST<Key extends Comparable<Key>, Value> {
 		return x;
 	}
 
+	// 遍历树中所有的键,采用中序遍历-->左-根-右
+	public Iterable<Key> keys() {
+		return keys(min(), max());
+	}
+
+	// 遍历指定范围内的键
+	public Iterable<Key> keys(Key lo, Key hi) {
+		Queue<Key> queue = new Queue<Key>();
+		keys(root, queue, lo, hi);
+		return queue;
+	}
+
+	private void keys(Node x, Queue<Key> queue, Key lo, Key hi) {
+		if (x == null) {
+			return;
+		}
+
+		int cmplo = lo.compareTo(x.key);
+		int cmphi = hi.compareTo(x.key);
+
+		if (cmplo < 0) {
+			keys(x.left, queue, lo, hi);
+		}
+		if (cmplo <= 0 && cmphi >= 0) {
+			queue.enqueue(x.key);
+		}
+		if (cmphi > 0) {
+			keys(x.right, queue, lo, hi);
+		}
+
+	}
+
 	public static void main(String[] args) {
 		BST<String, Integer> bst = new BST<String, Integer>();
 		bst.put("S", 0);
@@ -330,5 +364,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.select(bst.size() - 1));
 		bst.delete("X");
 		System.out.println(bst.get("X"));
+		for (String s : bst.keys()) {
+			System.out.print(s+" ");
+		}
 	}
 }
