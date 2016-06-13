@@ -189,6 +189,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 	// 根据索引查找键
 	public Key select(int k) {
+		if (k < 0 || k >= size())
+			throw new IllegalArgumentException();
 		return select(root, k).key;
 	}
 
@@ -244,12 +246,77 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 	}
 
+	// 删除最小的结点
+	public void deleteMin() {
+		root = deleteMin(root);
+	}
+
+	private Node deleteMin(Node x) {
+		if (x.left == null) {
+			return x.right;
+		}
+		x.left = deleteMin(x.left);
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+	}
+
+	// 删除最大的结点
+	public void deleteMax() {
+		root = deleteMax(root);
+	}
+
+	private Node deleteMax(Node x) {
+		if (x.right == null) {
+			return x.left;
+		}
+		x.right = deleteMax(x.right);
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+	}
+
+	// 删除指定结点
+	public void delete(Key key) {
+		root = delete(root, key);
+	}
+
+	/**
+	 * 如果该结点只有单边，参考deleteMin(),deleteMax(),在该结点有左右结点的情况下，
+	 * 它的后继结点就是其右子树中最小的结点，这样保证了二叉树的有序性 1、将执行即将被删除的结点的链表保存为t；
+	 * 2、将x指向它的后继结点min(t.right); 3、将x的右连接指向deleteMin(t.right); 4、x.left=t.left;
+	 * 
+	 * @param x
+	 * @param key
+	 * @return
+	 */
+	private Node delete(Node x, Key key) {
+		if (x == null) {
+			return null;
+		}
+		int cmp = key.compareTo(x.key);
+		if (cmp < 0) {
+			x.left = delete(x.left, key);
+		} else if (cmp > 0) {
+			x.right = delete(x.right, key);
+		} else {
+			Node t = x;
+			x = min(x.right);
+			x.right = deleteMin(t.right);
+			x.left = t.left;
+		}
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+	}
+
 	public static void main(String[] args) {
 		BST<String, Integer> bst = new BST<String, Integer>();
 		bst.put("S", 0);
 		bst.put("E", 1);
-		bst.put("B", 2);
-		bst.put("E", 6);
+		bst.put("A", 2);
+		bst.put("C", 3);
+		bst.put("R", 4);
+		bst.put("X", 5);
+		bst.put("H", 6);
+		bst.put("M", 7);
 		System.out.println(bst.get("E"));
 		System.out.println(bst.min());
 		System.out.println(bst.max());
@@ -257,6 +324,11 @@ public class BST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.ceiling("C"));
 		System.out.println(bst.select(1));
 		System.out.println(bst.rank("S"));
-
+		bst.deleteMin();
+		System.out.println(bst.select(0));
+		bst.deleteMax();
+		System.out.println(bst.select(bst.size() - 1));
+		bst.delete("X");
+		System.out.println(bst.get("X"));
 	}
 }
