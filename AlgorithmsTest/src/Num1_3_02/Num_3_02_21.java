@@ -37,6 +37,19 @@ class BSTR<K extends Comparable<K>, V> {
 		}
 	}
 
+	public K min() {
+		return min(root).k;
+	}
+
+	private Node min(Node x) {
+		if (x.left == null) {
+			return x;
+		} else {
+			return min(x.left);
+		}
+
+	}
+
 	public void put(K key, V value) {
 		root = put(root, key, value);
 	}
@@ -101,12 +114,56 @@ class BSTR<K extends Comparable<K>, V> {
 			return x.k;
 		}
 	}
-	
-	public K randomKey(){
-		int r=StdRandom.uniform(size());
+
+	public K randomKey() {
+		int r = StdRandom.uniform(size());
 		return select(r);
 	}
-	
+
+	public void deleteMin() {
+		root = deleteMin(root);
+	}
+
+	private Node deleteMin(Node x) {
+		if (x.left == null) {
+			return x.right;
+		}
+		x.left = deleteMin(x.left);
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+
+	}
+
+	public void delete(K key) {
+		root = delete(root, key);
+	}
+
+	private Node delete(Node x, K key) {
+		if (x == null) {
+			return null;
+		}
+		int cmp = key.compareTo(x.k);
+		if (cmp < 0) {
+			x.left = delete(x.left, key);
+		} else if (cmp > 0) {
+			x.right = delete(x.right, key);
+		} else {
+			if (x.right == null) {
+				return x.left;
+			}
+			if (x.left == null) {
+				return x.right;
+			}
+
+			Node t = x;
+			x = min(x.right);
+			x.right = deleteMin(t.right);
+			x.left = t.left;
+
+		}
+		x.N = size(x.left) + size(x.right) + 1;
+		return x;
+	}
 
 }
 
@@ -121,9 +178,12 @@ public class Num_3_02_21 {
 		b.put("T", 5);
 		b.put("M", 22);
 		b.put("X", 9);
+		System.out.println(b.min());
 		System.out.println(b.get("M"));
 		System.out.println(b.select(3));
 		System.out.println(b.randomKey());
+		b.delete("A");
+		System.out.println(b.min());
 	}
 
 }
