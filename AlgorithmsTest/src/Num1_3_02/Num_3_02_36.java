@@ -98,8 +98,7 @@ class BST4<Key extends Comparable<Key>, Value> {
 			return max(x.right);
 		}
 	}
-	
-	
+
 	public Key select(int k) {
 		return select(root, k);
 	}
@@ -127,12 +126,9 @@ class BST4<Key extends Comparable<Key>, Value> {
 		return queue;
 	}
 
-	
-	
-	
 	private void keys(Queue<Key> queue, Node x, Key lo, Key hi) {
-		for(int i=0;i<size();i++){
-			if(select(i).compareTo(lo)>=0 && select(i).compareTo(hi)<=0)
+		for (int i = 0; i < size(); i++) {
+			if (select(i).compareTo(lo) >= 0 && select(i).compareTo(hi) <= 0)
 				queue.enqueue(select(i));
 		}
 	}
