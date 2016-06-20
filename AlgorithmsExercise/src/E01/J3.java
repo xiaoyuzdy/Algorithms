@@ -5,6 +5,7 @@ package E01;
  * 
  * @author he
  *
+ *
  */
 public class J3 {
 	public static boolean check(String a, String b) {

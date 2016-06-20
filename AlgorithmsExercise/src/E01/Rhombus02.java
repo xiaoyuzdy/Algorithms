@@ -5,7 +5,7 @@ package E01;
  * 利用绝对值
  * args:7
  * @author he
- * 规律：比如args:7则第1行有7/2=3个空格和（7/2+1-7/2）×2-1个“*”
+ * 规律：比如args:7 则第1行有7/2=3个空格和（7/2+1-7/2）×2-1个“*”
  */
 public class Rhombus02 {
 	public static void main(String[] args) {
