@@ -354,8 +354,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.get("E"));
 		System.out.println(bst.min());
 		System.out.println(bst.max());
-		System.out.println(bst.floor("A"));
-		System.out.println(bst.ceiling("C"));
+		System.out.println(bst.floor("G"));
+		System.out.println("ceiling:"+bst.ceiling("A"));
 		System.out.println(bst.select(1));
 		System.out.println(bst.rank("S"));
 		bst.deleteMin();
