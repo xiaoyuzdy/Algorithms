@@ -1,7 +1,9 @@
 package Number_3;
 
+import edu.princeton.cs.algs4.Queue;
+
 /**
- * P281 算法3.4 红黑树 用红连接将两个2-结点构成2-3结点
+ * P281 算法3.4 红黑树 用红连接将两个2-结点构成2-3结点 和算法3.3比只要修改put()，和delete()方法
  * 
  * @author he
  *
@@ -38,6 +40,28 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 			return 0;
 		else
 			return x.N;
+	}
+
+	public Key min() {
+		return min(root).key;
+	}
+
+	private Node min(Node x) {
+		if (x.left == null)
+			return x;
+		else
+			return min(x.left);
+	}
+
+	public Key max() {
+		return max(root).key;
+	}
+
+	private Node max(Node x) {
+		if (x.right == null)
+			return x;
+		else
+			return max(x.right);
 	}
 
 	// 判断是否为红连接
@@ -140,6 +164,145 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 			return x.value;
 	}
 
+	/**
+	 * 根据index 查找键
+	 * 
+	 * @param k
+	 * @return
+	 */
+	public Key select(int k) {
+		if (k < 0 || k >= size())
+			throw new IllegalArgumentException();
+		return select(root, k).key;
+	}
+
+	private Node select(Node x, int k) {
+		if (x == null)
+			return null;
+		int t = size(x.left);
+		if (t > k)
+			return select(x.left, k);
+		else if (t < k)
+			return select(x.right, k - t - 1);
+		else
+			return x;
+
+	}
+
+	/**
+	 * 返回键的下标
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public int rank(Key key) {
+		return rank(root, key);
+	}
+
+	private int rank(Node x, Key key) {
+		if (x == null)
+			return 0;
+		int t = key.compareTo(x.key);
+		if (t < 0)
+			return rank(x.left, key);
+		else if (t > 0)
+			return 1 + size(x.left) + rank(x.right, key);
+		else
+			return size(x.left);
+	}
+
+	/**
+	 * 向下取整
+	 * 
+	 * @return
+	 */
+	public Key floor(Key key) {
+		Node x = floor(root, key);
+		if (x == null) {
+			return null;
+		} else {
+			return x.key;
+		}
+	}
+
+	private Node floor(Node x, Key key) {
+		if (x == null)
+			return null;
+		int cmp = key.compareTo(x.key);
+		if (cmp < 0)
+			return floor(x.left, key);
+		Node t = floor(x.right, key);
+		if (t != null)
+			return t;
+		else
+			return x;
+	}
+
+	/**
+	 * 向上取整
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Key ceiling(Key key) {
+		Node x = ceiling(root, key);
+		if (x == null)
+			return null;
+		else
+			return x.key;
+	}
+
+	private Node ceiling(Node x, Key key) {
+		if (x == null)
+			return null;
+		int cmp = key.compareTo(x.key);
+		if (cmp > 0)
+			return ceiling(x.right, key);
+		Node t = ceiling(x.left, key);
+		if (t != null)
+			return t;
+		else
+			return x;
+
+	}
+
+	/**
+	 * 返回所有键
+	 * 
+	 * @return
+	 */
+	public Iterable<Key> keys() {
+		return keys(min(), max());
+	}
+
+	/**
+	 * 返回指定范围内的键
+	 * 
+	 * @param lo
+	 * @param hi
+	 * @return
+	 */
+	public Iterable<Key> keys(Key lo, Key hi) {
+		Queue<Key> queue = new Queue<Key>();
+		keys(root, queue, lo, hi);
+		return queue;
+
+	}
+
+	private void keys(Node x, Queue<Key> queue, Key lo, Key hi) {
+		if (x == null)
+			return;
+		int cmplo = lo.compareTo(x.key);
+		int cmphi = hi.compareTo(x.key);
+
+		if (cmplo < 0)
+			keys(x.left, queue, lo, hi);
+		if (cmplo <= 0 && cmphi >= 0)
+			queue.enqueue(x.key);
+		if (cmphi > 0)
+			keys(x.right, queue, lo, hi);
+	}
+
 	public static void main(String[] args) {
 		RedBlackBST<String, Integer> bst = new RedBlackBST<String, Integer>();
 		bst.put("S", 0);
@@ -151,8 +314,14 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 		bst.put("H", 6);
 		bst.put("M", 7);
 		bst.put("E", 12);
+		System.out.println(bst.floor("A"));
+		System.out.println(bst.ceiling("B"));
+		System.out.println(bst.select(2));
+		System.out.println(bst.rank("M"));
+		System.out.println(bst.min());
 		System.out.println(bst.size());
 		System.out.println(bst.get("E"));
+		System.out.println(bst.keys());
 	}
 
 }

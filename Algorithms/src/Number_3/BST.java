@@ -352,6 +352,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 		bst.put("H", 6);
 		bst.put("M", 7);
 		System.out.println(bst.get("E"));
+		bst.deleteMin();
 		System.out.println(bst.min());
 		System.out.println(bst.max());
 		System.out.println(bst.floor("G"));
