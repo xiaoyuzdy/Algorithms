@@ -41,7 +41,7 @@ class RBBST<Key extends Comparable<Key>, Value> {
 	}
 
 	// 左旋转
-	private Node roateLeft(Node x) {
+	private Node rotateLeft(Node x) {
 		Node t = x.right;
 		x.right = t.left;
 		t.left = x;
@@ -55,7 +55,7 @@ class RBBST<Key extends Comparable<Key>, Value> {
 		return t;
 	}
 
-	private Node roateRight(Node x) {
+	private Node rotateRight(Node x) {
 		Node t = x.left;
 		x.left = t.right;
 		t.right = x;
@@ -76,10 +76,10 @@ class RBBST<Key extends Comparable<Key>, Value> {
 		return x.color == RED;
 	}
 
-	private void flipColors(Node x) {
-		x.color = RED;
-		x.left.color = BLACK;
-		x.right.color = BLACK;
+	private void flipColors(Node h) {
+		h.color = !h.color;
+		h.left.color = !h.left.color;
+		h.right.color = !h.right.color;
 
 	}
 
@@ -103,9 +103,9 @@ class RBBST<Key extends Comparable<Key>, Value> {
 		}
 
 		if (isRed(x.right) && !isRed(x.left))
-			x = roateLeft(x);
+			x = rotateLeft(x);
 		if (isRed(x.left) && isRed(x.left.left))
-			x = roateRight(x);
+			x = rotateRight(x);
 		if (isRed(x.left) && isRed(x.right))
 			flipColors(x);
 
@@ -132,16 +132,68 @@ class RBBST<Key extends Comparable<Key>, Value> {
 
 	}
 
+	public boolean isEmpty() {
+		return root == null;
+	}
+
+	// 使结点的左子树变为红色
+	private Node moveRedLeft(Node h) {
+		// 假设结点h为红色,h.left和h.left.left都是黑色
+		// 将h.left或者h.left的子结点之一变红
+		flipColors(h);
+		if (isRed(h.right.left)) {
+			h.right = rotateRight(h.right);
+			h = rotateLeft(h);
+		}
+		return h;
+	}
+
+	// 保证树的平衡
+	private Node balance(Node h) {
+		if (isRed(h.right))
+			h = rotateLeft(h);
+		if (isRed(h.left) && isRed(h.left.left))
+			h = rotateRight(h);
+		if (isRed(h.left) && isRed(h.right))
+			flipColors(h);
+
+		h.N = size(h.left) + size(h.right) + 1;
+		return h;
+
+	}
+
+	// 删除最小键，保证当前结点不是2-结点
+	public void deleteMin() {
+		if (!isRed(root.left) && !isRed(root.right))
+			root.color = RED;
+		root = deleteMin(root);
+		if (!isEmpty())
+			root.color = BLACK;
+	}
+
+	private Node deleteMin(Node h) {
+		if (h.left == null)
+			return null;
+		if (!isRed(h.left) && !isRed(h.left.left))
+			h = moveRedLeft(h);
+		h.left = deleteMin(h.left);
+		return balance(h);
+	}
+
 }
 
 public class Num_3_03_39 {
 
 	public static void main(String[] args) {
 		RBBST<String, Integer> b = new RBBST<String, Integer>();
-		 b.put("A", 1);
+		b.put("A", 1);
 		b.put("B", 3);
-		 b.put("A", 2);
+		b.put("A", 2);
 		b.put("C", 4);
+
+		b.deleteMin();
+		System.out.println(b.get("A"));
+
 		System.out.println(b.size());
 		System.out.println(b.get("C"));
 	}
