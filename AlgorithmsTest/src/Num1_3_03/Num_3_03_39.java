@@ -180,6 +180,34 @@ class RBBST<Key extends Comparable<Key>, Value> {
 		return balance(h);
 	}
 
+	private Node moveRedRight(Node h) {
+		// 假设结点h为红色，h.right和h.right.left都是黑色
+		// 将h.right或者h.right的子结点之一变红
+		flipColors(h);
+		if (!isRed(h.left.left))
+			h = rotateRight(h);
+		return h;
+	}
+
+	public void deleteMax() {
+		if (!isRed(root.left) && isRed(root.right))
+			root.color = RED;
+		root = deleteMax(root);
+		if (!isEmpty())
+			root.color = BLACK;
+	}
+
+	private Node deleteMax(Node h) {
+		if (isRed(h.left))
+			h = rotateRight(h);
+		if (h.right == null)
+			return null;
+		if (!isRed(h.right) && !isRed(h.right.left))
+			h = moveRedRight(h);
+		h.right = deleteMax(h.right);
+		return balance(h);
+	}
+
 }
 
 public class Num_3_03_39 {
@@ -193,7 +221,7 @@ public class Num_3_03_39 {
 
 		b.deleteMin();
 		System.out.println(b.get("A"));
-
+		b.deleteMax();
 		System.out.println(b.size());
 		System.out.println(b.get("C"));
 	}
