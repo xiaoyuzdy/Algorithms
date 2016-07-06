@@ -111,9 +111,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 	 * @param x
 	 */
 	private void flipColors(Node h) {
-		h.color = RED;
-		h.left.color = BLACK;
-		h.right.color = BLACK;
+		h.color = !h.color;
+		h.left.color = !h.left.color;
+		h.right.color = !h.right.color;
 	}
 
 	public void put(Key key, Value value) {
@@ -123,7 +123,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
 	private Node put(Node h, Key key, Value value) {
 		if (h == null)
-			h = new Node(key, value, 1, RED);
+			return new Node(key, value, 1, RED);
 
 		int cmp = key.compareTo(h.key);
 		if (cmp < 0)
@@ -162,6 +162,132 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 			return get(x.right, key);
 		else
 			return x.value;
+	}
+
+	public boolean isEmpty() {
+		return root == null;
+	}
+
+	/**
+	 * 使结点的左子树变为红树
+	 * 
+	 * @param h
+	 * @return
+	 */
+	private Node moveRedLeft(Node h) {
+		// 假设结点h为红色,h.left和h.left.left都是黑色
+		// 将h.left或者h.left的子结点之一变红
+		flipColors(h);
+		if (isRed(h.right.left)) {
+			h.right = rotateRight(h.right);
+			h = rotateLeft(h);
+		}
+		return h;
+	}
+
+	// 保证树的平衡
+	private Node balance(Node h) {
+		if (isRed(h.right))
+			h = rotateLeft(h);
+		if (isRed(h.left) && isRed(h.left.left))
+			h = rotateRight(h);
+		if (isRed(h.left) && isRed(h.right))
+			flipColors(h);
+
+		h.N = size(h.left) + size(h.right) + 1;
+		return h;
+
+	}
+
+	/**
+	 * 删除最小键，保证当前结点不是2-结点
+	 */
+	public void deleteMin() {
+		if (!isRed(root.left) && !isRed(root.right))
+			root.color = RED;
+		root = deleteMin(root);
+		if (!isEmpty())
+			root.color = BLACK;
+	}
+
+	private Node deleteMin(Node h) {
+		if (h.left == null)
+			return null;
+		if (!isRed(h.left) && !isRed(h.left.left))
+			h = moveRedLeft(h);
+		h.left = deleteMin(h.left);
+		return balance(h);
+	}
+
+	private Node moveRedRight(Node h) {
+		// 假设h结点为红,h.right和h.right.left为黑
+		// 将h.right或h.right的子结点变红
+		flipColors(h);
+		if (isRed(h.left.left))
+			h = rotateRight(h);
+		return h;
+	}
+
+	/**
+	 * 删除最大键保证当前节点不是2-结点
+	 * 
+	 */
+	public void deleteMax() {
+		if (!isRed(root.left) && !isRed(root.right))
+			root.color = RED;
+		root = deleteMax(root);
+		if (!isEmpty())
+			root.color = BLACK;
+	}
+
+	private Node deleteMax(Node h) {
+		if (isRed(h.left))
+			h = rotateRight(h);
+		if (h.right == null)
+			return null;
+		if (!isRed(h.right) && !isRed(h.right.left))
+			h = moveRedRight(h);
+		h.right = deleteMax(h.right);
+		return balance(h);
+
+	}
+
+	/**
+	 * 删除指定的键
+	 * 
+	 * @param key
+	 */
+	public void delete(Key key) {
+		if (!isRed(root.left) && !isRed(root.right))
+			root.color = RED;
+		root = delete(root, key);
+		if (!isEmpty())
+			root.color = BLACK;
+
+	}
+
+	private Node delete(Node h, Key key) {
+		if (key.compareTo(h.key) < 0) {
+			if (!isRed(h.left) && !isRed(h.left.left))
+				h = moveRedLeft(h);
+			h.left = delete(h.left, key);
+		} else {
+			if (isRed(h.left))
+				h = rotateRight(h);
+			if (key.compareTo(h.key) == 0 && h.right == null)
+				return null;
+			if (!isRed(h.right) && !isRed(h.right.left))
+				h = moveRedRight(h);
+			if (key.compareTo(h.key) == 0) {
+				h.value = get(h.right, min(h.right).key);
+				h.key = min(h.right).key;
+				h.right = deleteMin(h.right);
+			} else {
+				h.right = delete(h.right, key);
+			}
+
+		}
+		return balance(h);
 	}
 
 	/**
@@ -322,6 +448,12 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.size());
 		System.out.println(bst.get("E"));
 		System.out.println(bst.keys());
+		bst.deleteMin();
+		bst.deleteMax();
+		System.out.println(bst.select(0));
+		System.out.println(bst.select(bst.size() - 1));
+		bst.delete("E");
+		System.out.println(bst.get("E"));
 	}
 
 }
