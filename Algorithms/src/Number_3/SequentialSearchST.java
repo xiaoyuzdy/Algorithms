@@ -73,23 +73,33 @@ public class SequentialSearchST<Key, Value> {
 		return N == 0;
 	}
 
+	public boolean contains(Key key) {
+		if (key == null)
+			throw new NullPointerException("key 不能为null");
+		return get(key) != null;
+	}
+
 	/**
 	 * 根据键删除指定键值对
 	 * 
 	 * @param key
 	 */
 	public void delete(Key key) {
-		if (key == null) {
-			throw new NullPointerException("key can't be null");
-		}
+		if (key == null)
+			throw new NullPointerException("key 不能为 null");
+		first = delete(first, key);
+	}
 
-		for (Node x = first; x.next != null; x = x.next) {
-			if (x.next.key.equals(key)) {
-				x.next.value = null;
-				x.next = x.next.next;
-				N--;
-			}
+	private Node delete(Node x, Key key) {
+		if (x == null) {
+			return null;
 		}
+		if (x.key.equals(key)) {
+			N--;
+			return x.next;
+		}
+		x.next = delete(x.next, key);
+		return x;
 	}
 
 	/**
@@ -111,12 +121,12 @@ public class SequentialSearchST<Key, Value> {
 		st.put("C", 1);
 
 		System.out.println(st.get("A"));
-		st.delete("B");
+		st.delete("A");
 		System.out.println(st.size());// 2
 		System.out.println(st.get("B"));// null
 
 		for (String s : st.keys()) {
-			System.out.println(s);
+			System.out.print(s);
 		}
 
 	}
