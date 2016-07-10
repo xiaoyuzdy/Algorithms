@@ -1,5 +1,7 @@
 package Number_3;
 
+import edu.princeton.cs.algs4.Queue;
+
 /**
  * P297 算法3.5 基于拉链法的散列表，借助之前写的用链表实现的无序符号表
  * 
@@ -60,16 +62,38 @@ public class SeparateChainingHashST<Key extends Comparable<Key>, Value> {
 		st[i].delete(key);
 	}
 
+	/**
+	 * 返回所有键
+	 * 
+	 * @return
+	 */
+	public Iterable<Key> keys() {
+		Queue<Key> queue = new Queue<Key>();
+		keys(queue);
+		return queue;
+	}
+
+	private void keys(Queue<Key> queue) {
+		for (int i = 0; i < M; i++) {
+			for (Key key : st[i].keys()) {
+				queue.enqueue(key);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		SeparateChainingHashST<String, Integer> st = new SeparateChainingHashST<String, Integer>();
 		st.put("A", 1);
 		st.put("B", 2);
 		st.put("A", 3);
+		st.put("D", 4);
+		st.put("E", 5);
 		System.out.println(st.get("A"));
 		System.out.println(st.get("B"));
 		st.delete("A");
 		System.out.println(st.get("A"));
 		System.out.println(st.size());
+		System.out.println(st.keys());
 
 	}
 

@@ -17,7 +17,6 @@ public class Transaction {
 	@Override
 	public int hashCode() {
 		if (hash2 != 0) {
-			System.out.println("S");
 			return hash2;
 		}
 		int hash = 17;
