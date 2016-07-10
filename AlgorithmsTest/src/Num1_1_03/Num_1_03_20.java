@@ -45,6 +45,7 @@ public class Num_1_03_20<T> {
 		}
 		return null;
 	}
+		
 
 	public static void main(String[] args) {
 		Num_1_03_20<Integer> a = new Num_1_03_20<Integer>();

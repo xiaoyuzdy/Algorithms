@@ -142,7 +142,7 @@ class DoubleNode<T> {
 	}
 
 	// 删除指定的结点
-	public void pop(Node node) {
+	private void pop(Node node) {
 
 		node.perv.next = node.next;
 		node.next.perv = node.perv;
