@@ -9,12 +9,15 @@ import edu.princeton.cs.algs4.Queue;
  *
  */
 public class SeparateChainingHashST<Key extends Comparable<Key>, Value> {
+
+	private final static int CAP = 3;
+
 	private int N;// 键值对总数
 	private int M;// 散列表大小
 	private SequentialSearchST<Key, Value>[] st;// 存放链表对象的数组
 
 	public SeparateChainingHashST() {
-		this(997);// 997为素数
+		this(CAP);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,10 +35,25 @@ public class SeparateChainingHashST<Key extends Comparable<Key>, Value> {
 		return (key.hashCode() & 0x7fffffff) % M;
 	}
 
+	private void resize(int cap) {
+		SeparateChainingHashST<Key, Value> temp = new SeparateChainingHashST<Key, Value>(cap);
+		for (int i = 0; i < M; i++) {
+			for (Key key : st[i].keys()) {
+				temp.put(key, st[i].get(key));
+			}
+		}
+
+		this.M = temp.M;
+		this.N = temp.N;
+		this.st = temp.st;
+	}
+
 	// 将键值对添加到对应数组位置的链表中
 	public void put(Key key, Value value) {
 		if (key == null)
 			throw new NullPointerException("key 不能为null");
+		if (N >= M / 2)
+			resize(2 * M);
 		int i = hash(key);
 		if (!st[i].contains(key))
 			N++;
@@ -60,6 +78,8 @@ public class SeparateChainingHashST<Key extends Comparable<Key>, Value> {
 		if (st[i].contains(key))
 			N--;
 		st[i].delete(key);
+		if (N > 0 && N <= M / 8)
+			resize(M / 2);
 	}
 
 	/**
@@ -88,6 +108,10 @@ public class SeparateChainingHashST<Key extends Comparable<Key>, Value> {
 		st.put("A", 3);
 		st.put("D", 4);
 		st.put("E", 5);
+		st.put("E", 1);
+		st.put("A", 2);
+		st.put("R", 3);
+		st.put("H", 4);
 		System.out.println(st.get("A"));
 		System.out.println(st.get("B"));
 		st.delete("A");
