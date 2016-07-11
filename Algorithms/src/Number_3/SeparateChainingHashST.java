@@ -3,7 +3,7 @@ package Number_3;
 import edu.princeton.cs.algs4.Queue;
 
 /**
- * P297 算法3.5 基于拉链法的散列表，借助之前写的用链表实现的无序符号表
+ * P297 算法3.5 基于拉链法的散列表，借助之前写的用链表实现的无序符号表,数组保存的是链表
  * 
  * @author he
  *
