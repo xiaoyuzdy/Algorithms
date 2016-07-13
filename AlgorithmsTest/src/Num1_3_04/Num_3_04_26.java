@@ -50,6 +50,7 @@ class LiearPHST<Key, Value> {
 		return (key.hashCode() & 0x7fffffff) % M;
 	}
 
+	
 	public void put(Key key, Value value) {
 
 		int i = hash(key);
