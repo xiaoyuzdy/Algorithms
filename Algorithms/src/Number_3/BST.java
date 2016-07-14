@@ -300,8 +300,12 @@ public class BST<Key extends Comparable<Key>, Value> {
 		} else if (cmp > 0) {
 			x.right = delete(x.right, key);
 		} else {
+			if (x.right == null)
+				return x.left;
+			if (x.left == null)
+				return x.right;
 			Node t = x;
-			x = min(x.right);
+			x = min(t.right);
 			x.right = deleteMin(t.right);
 			x.left = t.left;
 		}
@@ -356,7 +360,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 		System.out.println(bst.min());
 		System.out.println(bst.max());
 		System.out.println(bst.floor("G"));
-		System.out.println("ceiling:"+bst.ceiling("A"));
+		System.out.println("ceiling:" + bst.ceiling("A"));
 		System.out.println(bst.select(1));
 		System.out.println(bst.rank("S"));
 		bst.deleteMin();
@@ -366,7 +370,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 		bst.delete("X");
 		System.out.println(bst.get("X"));
 		for (String s : bst.keys()) {
-			System.out.print(s+" ");
+			System.out.print(s + " ");
 		}
 	}
 }
