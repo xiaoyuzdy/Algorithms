@@ -15,6 +15,7 @@ public class IndexOfMinPQ_and_IndexOfMaxPQ<Key extends Comparable<Key>> {
 						// qp存的是pq值的索引，主要用于pq的排序见方法change()
 	private Key[] keys;// 有优先级之分的元素
 
+	@SuppressWarnings("unchecked")
 	public IndexOfMinPQ_and_IndexOfMaxPQ(int maxN) {
 		keys = (Key[]) new Comparable[maxN + 1];
 		pq = new int[maxN + 1];
@@ -103,7 +104,7 @@ public class IndexOfMinPQ_and_IndexOfMaxPQ<Key extends Comparable<Key>> {
 
 	public void change(int k, Key key) {
 		keys[k] = key;
-		// 通过pq找到在pq中k对应的N，并执行相应操作
+		// 通过qp找到在pq中k对应的N，并执行相应操作
 		swim(qp[k]);
 		sink(qp[k]);
 	}
@@ -159,20 +160,24 @@ public class IndexOfMinPQ_and_IndexOfMaxPQ<Key extends Comparable<Key>> {
 	// return keys[pq[i]].compareTo(keys[pq[j]]) < 0;
 	// }
 
+	
 	private void exch(int i, int j) {
+		//pq[]数组中的pq[i]和pq[j]交换
 		int swap = pq[i];
 		pq[i] = pq[j];
 		pq[j] = swap;
+		//同时更新qp[]数组,保证qp[]是pq[]的逆序
 		qp[pq[i]] = i;
 		qp[pq[j]] = j;
 	}
 
 	public static void main(String[] args) {
-		Integer a[] = { 1, 5, 3, 8, 9, 7, 2, 4, 6 };
-		IndexOfMinPQ_and_IndexOfMaxPQ<Integer> pq = new IndexOfMinPQ_and_IndexOfMaxPQ<Integer>(a.length);
+		String a[] = { "A","X","Z","C","B","E" };
+		IndexOfMinPQ_and_IndexOfMaxPQ<String> pq = new IndexOfMinPQ_and_IndexOfMaxPQ<String>(a.length);
 		for (int i = 0; i < a.length; i++) {
 			pq.insert(i, a[i]);
 		}
+		System.out.println(pq.min());
 		// 删除最小元素，输出最小元素对应的下表和元素
 		while (!pq.isEmpty()) {
 			int i = pq.delMin();
