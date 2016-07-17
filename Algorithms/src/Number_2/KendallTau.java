@@ -1,9 +1,5 @@
 package Number_2;
 
-import java.util.concurrent.ForkJoinPool.ManagedBlocker;
-
-import edu.princeton.cs.algs4.Insertion;
-import edu.princeton.cs.algs4.InsertionX;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
