@@ -22,6 +22,7 @@ public class RangeLookuoCSV {
 		int keyField = Integer.valueOf(args[1]);
 		int valField = Integer.valueOf(args[2]);
 		ST<String, String> st = new ST<String, String>();
+		
 		while (!in.isEmpty()) {
 			String line = in.readLine();
 			String[] tokens = line.split(",");

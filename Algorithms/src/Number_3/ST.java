@@ -1,8 +1,11 @@
 package Number_3;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import javax.xml.validation.Validator;
 
 /**
  * P231 有序符号表，借助TreeMap
@@ -156,6 +159,22 @@ public class ST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 		return st.keySet().iterator();
 	}
 
+	/**
+	 * 返回 指定范围内的所有键值对
+	 * 
+	 * @param fromKey
+	 *            最小的键
+	 * @param fromInclusive
+	 *            是否包含最小键
+	 * @param toKey
+	 *            最大的键
+	 * @param toInclusive
+	 *            是否包含最大键
+	 */
+	public Map<Key, Value> subMap(Key fromKey, boolean fromInclusive, Key toKey, boolean toInclusive) {
+		return st.subMap(fromKey, fromInclusive, toKey, toInclusive);
+	}
+
 	public static void main(String[] args) {
 		ST<String, Integer> st = new ST<String, Integer>();
 		st.put("A", 3);
@@ -171,6 +190,10 @@ public class ST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 		for (String s : st.key()) {
 			System.out.println(s);
 		}
+
+		Map<String, Integer> t = st.subMap("A", true, "B", true);
+		System.out.println(t.get("C"));
+
 	}
 
 }
