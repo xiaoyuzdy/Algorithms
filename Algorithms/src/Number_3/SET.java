@@ -1,5 +1,6 @@
 package Number_3;
 
+import java.awt.RenderingHints.Key;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -9,9 +10,9 @@ import java.util.TreeSet;
  * @author he
  *
  */
-public class SET<Key extends Comparable<Key>> {
+public class SET<Key extends Comparable<Key>> implements Iterable<Key> {
 	private TreeSet<Key> set;
-	
+
 	public SET() {
 		set = new TreeSet<Key>();
 	}
@@ -44,6 +45,10 @@ public class SET<Key extends Comparable<Key>> {
 			sb.append(iterator.next());
 		}
 		return sb.toString();
+	}
+
+	public Iterator<Key> iterator() {
+		return set.iterator();
 	}
 
 	public static void main(String[] args) {
