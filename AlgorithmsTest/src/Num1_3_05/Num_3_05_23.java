@@ -31,6 +31,7 @@ class SparseMatrix {
 		return rows[i].get(j);
 	}
 
+	
 	//所有非0元素的个数
 	public int nnz() {
 		int sum = 0;
