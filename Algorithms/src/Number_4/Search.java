@@ -11,7 +11,7 @@ public class Search {
 	private int s;// 起点
 	private int V;// 顶点总数
 
-	// 找到和起点s连通的所有顶点
+	// 找到和起点s连通的所有顶点（包含自身）
 	public Search(Graph G, int s) {
 		uf = new WeightedQuickUnionUF(G.V());
 		this.s = s;
