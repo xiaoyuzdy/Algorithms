@@ -23,6 +23,7 @@ public class DepthFirstSearch {
 		dfs(G, s);
 	}
 
+	//遍历每条边和每个顶点
 	public void dfs(Graph G, int s) {
 		marked[s] = true;
 		count++;
