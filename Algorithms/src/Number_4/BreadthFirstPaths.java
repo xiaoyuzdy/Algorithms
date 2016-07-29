@@ -5,7 +5,10 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 
 /**
- * P346 算法4.2 广度优先搜索查找图中的路径 args[0]:tinyCG.txt args[1]:0
+ * P346 算法4.2 广度优先搜索查找图中的路径 
+ * 主要用于查找最短路径
+ * args[0]:tinyCG.txt 
+ * args[1]:0
  * 
  * @author he
  *
