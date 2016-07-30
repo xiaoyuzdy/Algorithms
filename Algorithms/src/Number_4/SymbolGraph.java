@@ -8,7 +8,8 @@ import edu.princeton.cs.algs4.StdIn;
  * P356 符号图的数据类型 顶点为字符串，提供了反向索引的功能
  * 
  * @author he
- *
+ *  args[0]:routes.txt
+ *  args[1]:" "
  */
 public class SymbolGraph {
 	private ST<String, Integer> st;// 顶点的符号名-->index
