@@ -30,6 +30,7 @@ class DeepS {
 		}
 	}
 
+	//可以删除的顶点
 	public int canDel() {
 		return t;
 	}
