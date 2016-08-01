@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 
 /**
- * P361 T16 假设图的每条边都相等且每条边变长1
+ * P361 T16 假设图的每条边都相等且每条边边长1
  * 
  * @author he 
  * args[0]:G.txt 
@@ -19,8 +19,8 @@ class GraphPreoperties {
 	private BreadthFirstPaths b;
 	private CC c;
 	private Graph G;
-	private int rad = 99;// 半径初始为1防止 得到 比如顶点0到顶点0的距离
-	private int center;// G的某个中点
+	private int rad = 99;// 半径初始为99防止 得到 比如顶点0到顶点0的距离
+	private int center=-1;// G的某个中点
 	private Cycle cycle;// 用于求周长
 
 	public GraphPreoperties(Graph G) {
@@ -82,13 +82,13 @@ class GraphPreoperties {
 	 * @return
 	 */
 	public int radius() {
-		if (rad == 0)
+		if (rad == 99)
 			diameter();
 		return rad;
 	}
 
 	public int center() {
-		if (center == 0)
+		if (center == -1)
 			diameter();
 		return center;
 	}
