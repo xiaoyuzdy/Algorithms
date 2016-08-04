@@ -4,10 +4,12 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 
 /**
- * P366 Digraph（有向图）数据类型 代码和无向图基本类似，只是在添加边时无需添加两次 同时加入了有向图取反，这样可以得到指向每个顶点的所有的边
+ * P366 Digraph（有向图）数据类型 
+ * 代码和无向图基本类似，只是在添加边时无需添加两次 
+ * 同时加入了有向图取反，这样可以得到指向每个顶点的所有的边
  * 
  * @author he
- *
+ *  args[0]:tinyDG.txt
  */
 public class Digraph {
 
