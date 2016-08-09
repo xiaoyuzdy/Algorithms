@@ -40,6 +40,6 @@ public class Num_4_02_20 {
 		G.addEdge(1, 2);
 		G.addEdge(2, 0);
 		Euler e=new Euler(G);
-		
+		 
 	}
 }
