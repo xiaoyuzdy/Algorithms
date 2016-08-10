@@ -6,7 +6,11 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.Queue;
 
 /**
- * P387 T21 顶点的输入请按规定输入，在这不做判断
+ * P387 T21 顶点v和w的共同祖先（图G无环）
+ * 顶点的输入请按规定输入，在这不做判断
+ * 思路：所谓的最近祖先就是最近的一个顶点能够分别到达v和w，因此我们可以使用G的反向图和广度优先搜索结合的办法找到
+ * 
+ * 
  * 
  * @author he
  *
@@ -21,9 +25,7 @@ class LAC {
 	}
 
 	/**
-	 * 在逆向图G中顶点v
-	 * 
-	 * 
+	 *
 	 * 因为使用广度优先搜索，所以linkedlist保存的顺序就是顶点v指向的最近的顶点的顺序
 	 * 
 	 * @param v
