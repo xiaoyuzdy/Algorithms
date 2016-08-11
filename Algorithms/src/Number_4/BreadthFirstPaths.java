@@ -47,6 +47,10 @@ public class BreadthFirstPaths {
 			}
 		}
 	}
+	
+
+	
+	
 
 	public boolean hasPathTo(int v) {
 		return marked[v];
