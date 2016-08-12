@@ -10,7 +10,7 @@ public class Edge implements Comparable<Edge> {
 
 	private final int v;// 顶点之一
 	private final int w;// 另一个顶点
-	private final double weight;// 边的权重
+	private final double weight;// 边的权重,不得大于1
 
 	public Edge(int w, int v, double weight) {
 		this.v = v;
@@ -43,7 +43,7 @@ public class Edge implements Comparable<Edge> {
 	 * @return
 	 */
 	public int other(int x) {
-		if (v == w)
+		if (x == w)
 			return v;
 		else if (x == v)
 			return w;
@@ -62,11 +62,11 @@ public class Edge implements Comparable<Edge> {
 
 	@Override
 	public String toString() {
-		return String.format("%d--%d  %.2f", w, v, weight);
+		return String.format("%d--%d %.2f", w, v, weight);
 	}
 
 	public static void main(String[] args) {
-		Edge e = new Edge(1, 0, 3.54);
+		Edge e = new Edge(1, 0, 0.54);
 		System.out.println(e.toString());
 	}
 
