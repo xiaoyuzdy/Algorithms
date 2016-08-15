@@ -7,7 +7,6 @@ package Num2_4_02;
  */
 import edu.princeton.cs.algs4.Topological;
 import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.In;;
 
 class TraceablePath {
 	private Topological t;// Í¼GµÄÍØÆË
