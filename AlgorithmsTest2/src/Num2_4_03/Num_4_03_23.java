@@ -1,7 +1,5 @@
 package Num2_4_03;
 
-import java.util.HashSet;
-import java.util.Set;
 import edu.princeton.cs.algs4.Edge;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.MaxPQ;
