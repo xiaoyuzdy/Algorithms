@@ -36,7 +36,7 @@ public class Cycle {
 			if (edge[v] == null)
 				edge[v] = e;
 			else
-				t = e;
+				t = e;//有一条边会被覆盖
 			if (path != null)
 				return;
 			if (!marked[w]) {
