@@ -6,8 +6,7 @@ import edu.princeton.cs.algs4.In;
 /**
  * P415 加权有向图的数据类型
  * 
- * @author he
- *
+ * @author he arhs[0]:tinyEWD.txt
  */
 public class EdgeWeightedDigraph {
 
@@ -87,12 +86,23 @@ public class EdgeWeightedDigraph {
 				bag.add(e);
 		return bag;
 	}
-	
+
 	@Override
 	public String toString() {
-		StringBuilder sb=new StringBuilder();
-		return super.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("有" + V + "个顶点 " + E + "条边" + "\n");
+		for (int i = 0; i < V; i++) {
+			sb.append(i + ":");
+			for (DirectedEdge e : adj[i])
+				sb.append(e+"  ");
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
-	
+
+	public static void main(String[] args) {
+		EdgeWeightedDigraph G = new EdgeWeightedDigraph(new In(args[0]));
+		System.out.println(G.toString());
+	}
 
 }
