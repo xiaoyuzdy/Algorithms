@@ -1,5 +1,7 @@
 package Number_4;
 
+import Number_4_02.EdgeWeightedDigraph;
+
 /**
  * P375 算法4.5 拓扑排序（借助于有向图的无环检查和顶点排序） 
  * 无环有向图的拓扑排序就是顶点的逆后序排列
@@ -11,6 +13,7 @@ package Number_4;
 public class Topological {
 	private Iterable<Integer> order;// 顶点的拓扑顺序
 
+	//有向图
 	public Topological(Digraph G) {
 		DirectedCycle cycle = new DirectedCycle(G);
 		if (!cycle.hasCycle()) {
@@ -18,6 +21,7 @@ public class Topological {
 			order = d.reversePost();
 		}
 	}
+		
 
 	public Iterable<Integer> order() {
 		return order;

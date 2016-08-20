@@ -7,8 +7,7 @@ import edu.princeton.cs.algs4.Stack;
 /**
  * P423 算法4.9 最短路径的Dijkstra算法，能够解决边权重非负的加权有向图的单起点最短路径问题
  * 
- * args[0]:tinyEWD.txt 
- * args[1]:0
+ * args[0]:tinyEWD.txt args[1]:0
  * 
  * @author he
  *
@@ -17,6 +16,8 @@ public class DijkstraSP {
 	private double distTo[];// 保存权重，最短路径的总权重，distTo[w]表示起点到w最短路径的总权重
 	private DirectedEdge edgeTo[];// 最短路径的边
 	private IndexMinPQ<Double> pq;// 保存顶点和起点到达该顶点累加的权重
+
+	private DijkstraSP all[];// 用于求任意顶点之间的最短路径
 
 	/**
 	 * 
@@ -39,6 +40,41 @@ public class DijkstraSP {
 			relax(G, pq.delMin());
 		}
 
+	}
+
+	/**
+	 * 求任意顶点之间的最短路径
+	 * 
+	 * @param G
+	 */
+	public DijkstraSP(EdgeWeightedDigraph G) {
+		all = new DijkstraSP[G.V()];
+		for (int i = 0; i < G.V(); i++)
+			all[i] = new DijkstraSP(G, i);
+	}
+
+	/**
+	 * s到t之间的最短路径
+	 * 
+	 * @param s
+	 *            起点
+	 * @param t
+	 *            终点
+	 * @return
+	 */
+	public Iterable<DirectedEdge> path(int s, int t) {
+		return all[s].pathTo(t);
+	}
+
+	/**
+	 * 任意顶点之间最短路径的权重
+	 * 
+	 * @param s
+	 * @param t
+	 * @return
+	 */
+	public double dist(int s, int t) {
+		return all[s].distTo(t);
 	}
 
 	/**
@@ -85,7 +121,7 @@ public class DijkstraSP {
 	}
 
 	/**
-	 * 从顶点到s的路径
+	 * 从起点到v的路径
 	 * 
 	 * @param v
 	 * @return
@@ -101,7 +137,7 @@ public class DijkstraSP {
 
 	public static void main(String[] args) {
 		EdgeWeightedDigraph G = new EdgeWeightedDigraph(new In(args[0]));
-		int s = Integer.valueOf(args[1]);
+		int s = Integer.valueOf(args[1]);//起点
 		DijkstraSP sp = new DijkstraSP(G, s);
 
 		for (int t = 0; t < G.V(); t++) {
@@ -112,6 +148,13 @@ public class DijkstraSP {
 					System.out.print(e + " ");
 			System.out.println();
 		}
+
+		DijkstraSP all = new DijkstraSP(G);
+		int w = 7;
+		int t = 0;
+		// 顶点7到顶点0之间的最短路径
+		for (DirectedEdge e : all.path(w, t))
+			System.out.print(e + " ");
 
 	}
 
