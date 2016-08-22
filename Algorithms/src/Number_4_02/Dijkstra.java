@@ -17,6 +17,10 @@ public class Dijkstra {
 	 *            Æðµãs
 	 */
 	public Dijkstra(EdgeWeightedDigraph G, int s) {
+		for (DirectedEdge e : G.edges()) {
+			if (e.weight() < 0)
+				throw new IllegalArgumentException("edge " + e + " has negative weight");
+		}
 
 		distTo = new double[G.V()];
 		edgeTo = new DirectedEdge[G.V()];
@@ -93,7 +97,7 @@ public class Dijkstra {
 		Dijkstra sp = new Dijkstra(G, s);
 
 		for (int t = 0; t < G.V(); t++) {
-			System.out.print(s + " to " + t);
+			System.out.print(0 + " to " + t);
 			System.out.printf(" (%4.2f): ", sp.distTo(t));
 			if (sp.hasPathTo(t))
 				for (DirectedEdge e : sp.pathTo(t))
