@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Stack;
 
 /**
- * P447 T24 使用二维数组 集合S中添加一个顶点---->T23题 集合S中添加一些顶点---->T24题 集合S中添加所有顶点---->T25题
+ * P447 T24 使用二维数组
  * 
  * @author he args[0]:tinyEWD.txt
  */
