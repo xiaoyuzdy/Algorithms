@@ -55,15 +55,17 @@ public class BellmanFordSP {
 				distTo[w] = distTo[v] + e.weight();
 				edgeTo[w] = e;
 				if (!onQ[w]) {
-					queue.enqueue(w);
+					queue.enqueue(w);// 如果存在负权重环，则队列永远不会为空
 					onQ[w] = true;
 				}
 			}
 
+			// 如果含有负权重环则edgeTo[index]标记过的边会含环，而图G含有一般的环则edgeTo[index]标记过的边不会含环
 			if (cost++ % G.V() == 0) {
 				findNegativeCycle();
-				if (hasNegativeCycle())
+				if (hasNegativeCycle()) {
 					return;
+				}
 			}
 		}
 
@@ -110,7 +112,7 @@ public class BellmanFordSP {
 	}
 
 	/**
-	 * 查找负权重环
+	 * 查找负权重环，只是一般的环检测
 	 */
 	private void findNegativeCycle() {
 		int V = edgeTo.length;
