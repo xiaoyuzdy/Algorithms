@@ -1,5 +1,7 @@
 package Number_5;
 
+import edu.princeton.cs.algs4.StdRandom;
+
 /**
  * P469 算法5.3 三向字符串快速排序 适合含有大量等值键、有较长公共前缀的键、取值范围较小的键和小数组
  * 
@@ -21,6 +23,7 @@ public class Quick3string {
 	}
 
 	public static void sort(String a[]) {
+		StdRandom.shuffle(a);// 消除对输入的依赖
 		sort(a, 0, a.length - 1, 0);
 	}
 
@@ -48,7 +51,7 @@ public class Quick3string {
 
 		sort(a, lo, lt - 1, d);
 		if (v > 0)
-			sort(a, lo, hi, d+1);
+			sort(a, lo, hi, d + 1);
 		sort(a, gt + 1, hi, d);
 	}
 
