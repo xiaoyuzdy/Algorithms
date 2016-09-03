@@ -33,8 +33,9 @@ public class TrieST<Value> {
 			x = new Node();
 		// 将值保存到键的最后一个字符所在结点
 		if (d == key.length()) {
+			if (x.val == null)
+				N++;
 			x.val = val;
-			N++;
 			return x;
 		}
 		char c = key.charAt(d);// 找到d个字符对应的子单词查找树
@@ -64,7 +65,7 @@ public class TrieST<Value> {
 	}
 
 	/**
-	 * public int size() { return size(root)+1; }
+	 * public int size() { return size(root); }
 	 * 
 	 * private int size(Node x) { if (x == null) return 0; int cn = 0; if (x.val
 	 * != null) cn++; for (char r = 0; r < R; r++) cn += size(x.next[r]); return
@@ -85,7 +86,7 @@ public class TrieST<Value> {
 			trieST.put(key, i++);
 		}
 
-		System.out.println(trieST.get("shells"));
+		System.out.println(trieST.get("sea"));
 
 	}
 
