@@ -4,10 +4,11 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
 
 /**
- * P479 算法5.4 基于单词查找树的符号表
- * 
+ * P479 算法5.4 基于单词查找树的符号表 注意：除了d==key.length对应的数组保存的结点有值其他所有的结点不保存值的，如key-->she
+ * 对应的值为0，'s' 'h' 'e'
+ * 对应只是数组的下标(字符转化为十进制数)而已而不是Node.c=s，书中化的图那一个圆圈代表的是数组中的一个元素且index=s(转换为十进制)
  * args[0]:shellsST.txt
- * 
+ * 只有R向的单词查找树具有唯一性
  * @author he
  *
  */
