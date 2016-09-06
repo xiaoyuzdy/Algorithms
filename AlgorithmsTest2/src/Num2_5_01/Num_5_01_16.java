@@ -48,16 +48,29 @@ class list<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	// 排序
-	public list<T> srot(list<?> l) {
+	// public list<T> srot(list<?> l) {
+	// Object[] a = l.toArray();
+	// sort(a, 0, a.length - 1, 0);
+	// list<T> tt = new list<T>();
+	// for (Object e : a) {
+	// @SuppressWarnings("unchecked")
+	// T x = (T) e;
+	// tt.push(x);
+	// }
+	// return tt;
+	// }
+
+	// 排序
+	public void srot(list<?> l) {
 		Object[] a = l.toArray();
 		sort(a, 0, a.length - 1, 0);
-		list<T> tt = new list<T>();
 		for (Object e : a) {
-			@SuppressWarnings("unchecked")
-			T x = (T) e;
-			tt.push(x);
+			Node oldfirst = first;
+			first = new Node();
+			first.item = (T) e;
+			first.next = oldfirst;
 		}
-		return tt;
+		
 	}
 
 	private void sort(Object a[], int lo, int hi, int d) {
@@ -124,10 +137,13 @@ class list<T extends Comparable<T>> implements Iterable<T> {
 public class Num_5_01_16 {
 	public static void main(String[] args) {
 		list<Integer> list = new list<Integer>();
-		for(int i=0;i<10;i++)
-			list.push(StdRandom.uniform(10));//添加10个随机数
-		list<Integer> lt = list.srot(list);
-		while (!lt.isEmpty())
-			System.out.println(lt.pop());
+		for (int i = 0; i < 10; i++)
+			list.push(StdRandom.uniform(10));// 添加10个随机数
+//		list<Integer> lt = list.srot(list);
+		list.srot(list);
+//		while (!lt.isEmpty())
+//			System.out.println(lt.pop());
+		while (!list.isEmpty())
+			System.out.println(list.pop());
 	}
 }
