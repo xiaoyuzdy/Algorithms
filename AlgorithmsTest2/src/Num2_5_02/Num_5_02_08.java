@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Queue;
 
 /**
  * P491 T08 args[0]=shellsST.txt
- * 因为每个结点不代表一个键，所以不能按照二叉树那种递归写，所以我的思路就是将所有的key保存到一个数组中，
+ * 因为每个结点不代表一个键，所以不能按照二叉树那种递归写，我的思路就是将所有的key保存到一个数组中，
  * 调用方法的时候通过二分查找获取index，从数组中取出符合条件的key
  * 
  * @author he
@@ -18,6 +18,7 @@ class TrieS<Value> {
 	private Node root;
 	private String temp[];// 保存键的数组
 	private int N;
+	private boolean change = true;// 用于判断在调用了array（）方法后是否发生了添加或删除操作
 
 	private static class Node {
 		Object val;
@@ -36,6 +37,7 @@ class TrieS<Value> {
 			if (x.val == null)
 				N++;
 			x.val = val;
+			change = true;
 			return x;
 		}
 		char c = key.charAt(d);
@@ -68,9 +70,10 @@ class TrieS<Value> {
 	private Node delete(Node x, String key, int d) {
 		if (x == null)
 			return null;
-		if (d == key.length())
+		if (d == key.length()) {
 			x.val = null;
-		else {
+			change = true;
+		} else {
 			char c = key.charAt(d);
 			x.next[c] = delete(x.next[c], key, d + 1);
 		}
@@ -105,10 +108,12 @@ class TrieS<Value> {
 	// 给temp数组赋值
 	private void array() {
 		// 数组是有序的，见collect的实现就是按照有序顺序进行的递归（升序）
-		temp = new String[N];
-		int ind = 0;
-		for (String t : keys()) {
-			temp[ind++] = t;
+		if (change || temp == null) {
+			temp = new String[N];
+			int ind = 0;
+			for (String t : keys()) {
+				temp[ind++] = t;
+			}
 		}
 	}
 
@@ -181,6 +186,7 @@ public class Num_5_02_08 {
 		System.out.println("floor:" + t.floor("sh"));
 		// System.out.println(t.get("shells"));
 		System.out.println("rank:" + t.rank("she"));
+		t.put("tha", 10);
 		System.out.println("select:" + t.select(6));
 	}
 
