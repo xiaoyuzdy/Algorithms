@@ -1,6 +1,7 @@
 package Num2_5_02;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Queue;
 
 /**
  * P491 T09 args[0]:shellsST.txt
@@ -90,19 +91,58 @@ class TST<Value> {
 
 	}
 
-	// 所有以s为前缀的键
-	public Iterable<String> keysWithPrefix() {
-			
+	public Iterable<String> keys() {
+		Queue<String> queue = new Queue<String>();
+		collect(root, new StringBuilder(), queue);
+		return queue;
 	}
-	
-	private void collect(){
-		
-	}
-	
-	
-	// 所有和s匹配的键(其中"."能匹配任意字符)
-	public Iterable<String> keysThatMath(String s) {
 
+	// 所有以s为前缀的键
+	public Iterable<String> keysWithPrefix(String prefix) {
+		Queue<String> queue = new Queue<String>();
+		Node x = get(root, prefix, 0);
+		if (x == null)
+			return queue;
+		if (x.val != null)
+			queue.enqueue(prefix);
+		collect(x.mid, new StringBuilder(prefix), queue);
+		return queue;
+	}
+
+	private void collect(Node x, StringBuilder prefix, Queue<String> queue) {
+		if (x == null)
+			return;
+		collect(x.left, prefix, queue);
+		if (x.val != null)
+			queue.enqueue(prefix.toString() + x.c);
+		collect(x.mid, prefix.append(x.c), queue);
+		prefix.deleteCharAt(prefix.length() - 1);//将记录过的key删除，回溯到最初的首字母
+		collect(x.right, prefix, queue);
+	}
+
+	// 所有和s匹配的键(其中"."能匹配任意字符)
+	public Iterable<String> keysThatMatch(String pattern) {
+		Queue<String> queue = new Queue<String>();
+		collect(root, new StringBuilder(), 0, pattern, queue);
+		return queue;
+	}
+
+	private void collect(Node x, StringBuilder prefix, int i, String pattern, Queue<String> queue) {
+		if (x == null)
+			return;
+		char c = pattern.charAt(i);
+		if (c == '.' || c < x.c)
+			collect(x.left, prefix, i, pattern, queue);
+		if (c == '.' || c == x.c) {
+			if (i == pattern.length() - 1 && x.val != null)
+				queue.enqueue(prefix.toString() + x.c);
+			if (i < pattern.length() - 1) {
+				collect(x.mid, prefix.append(x.c), i + 1, pattern, queue);
+				prefix.deleteCharAt(prefix.length() - 1);
+			}
+		}
+		if (c == '.' || c > x.c)
+			collect(x.right, prefix, i, pattern, queue);
 	}
 
 }
@@ -116,7 +156,9 @@ public class Num_5_02_09 {
 			String key = in.readString();
 			tst.put(key, i++);
 		}
-		System.out.println(tst.get("shells"));
+//		System.out.println(tst.get("shells"));
+		for(String key:tst.keys())
+			System.out.println(key);
 	}
 
 }
