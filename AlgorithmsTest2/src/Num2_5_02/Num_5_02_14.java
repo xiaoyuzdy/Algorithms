@@ -12,7 +12,7 @@ public class Num_5_02_14 {
 		String s = args[0];
 		int L = Integer.valueOf(args[1]);
 		TST<Integer> t = new TST<Integer>();
-		for (int i = 0; i + L < s.length(); i++) {
+		for (int i = 0; i + L <=s.length(); i++) {
 			String temp = s.substring(i, i + L);
 			if (!t.contains(temp))
 				t.put(temp, i);
