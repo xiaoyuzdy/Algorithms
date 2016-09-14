@@ -1,7 +1,8 @@
 package Number_5;
 
 /**
- * P501 算法 5.6 KMP字符串查找算法
+ * P501 算法 5.6 KMP字符串查找算法   
+ * 适合在重复性很高的文本中查找重复性很高的模式（实际应用中和暴力算法差不多），不需要回退
  * args[0]:AACAA
  * args[1]:AABRAACADABRAACAADABRA
  * @author he
