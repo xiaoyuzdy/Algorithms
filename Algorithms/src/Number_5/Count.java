@@ -2,9 +2,6 @@ package Number_5;
 
 import edu.princeton.cs.algs4.Alphabet;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
 /**
  * P454 Alphabet类(字母表)的测试用例
  *  args[0]:ABCDR 
