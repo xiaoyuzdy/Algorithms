@@ -31,7 +31,7 @@ public class Num_5_04_12 {
 
 	// 匹配日期,月份缩写
 	public static void matchDate(String txt) {
-		pattern = Pattern.compile("[a-z]{3,4}[1-31]{1,2},[0-9]{4}");
+		pattern = Pattern.compile("[a-z]{3,4},(3[0-1]|[1-2]?\\d),([1-9]{4}|[1-9]?[1-9]?\\d)");
 		matcher = pattern.matcher(txt);
 		while (matcher.find())
 			System.out.println(matcher.group());
@@ -59,7 +59,7 @@ public class Num_5_04_12 {
 	public static void main(String[] args) {
 		matchTel("(214)432-1234 765356-9865");
 		matchNum("123-45-6789 234-W3-5643");
-		matchDate("dec31,1999");
+		matchDate("dec,31,199");
 		matchIP("255.255.255.255");
 		matchCar("7543DF");
 
