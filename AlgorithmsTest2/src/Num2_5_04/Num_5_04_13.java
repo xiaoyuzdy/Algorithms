@@ -1,5 +1,7 @@
 package Num2_5_04;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,10 +17,16 @@ public class Num_5_04_13 {
 
 	// 匹配除了11和111的所有字符串
 	public static void matchA(String txt) {
-		pattern = Pattern.compile("[^1]{2,3}");
+		List<String> list = new ArrayList<String>();
+		String temp[] = txt.split(" ");
+		for (int i = 0; i < temp.length; i++)
+			list.add(temp[i]);
+		// 匹配含11和111
+		pattern = Pattern.compile("(111|11)");
 		matcher = pattern.matcher(txt);
 		while (matcher.find())
-			System.out.print(matcher.group());
+			list.remove(matcher.group().trim());
+		System.out.println(list.toString());
 	}
 
 	// 奇数位为1，个位数为1？
@@ -38,19 +46,25 @@ public class Num_5_04_13 {
 			System.out.print(matcher.group());
 	}
 
+	// 匹配不存在连续两个1的所有字符串
 	public static void matchD(String txt) {
-		pattern = Pattern.compile("[^1]{2}");
+		List<String> list = new ArrayList<String>();
+		String temp[] = txt.split(" ");
+		for (int i = 0; i < temp.length; i++)
+			list.add(temp[i]);
+		// 匹配含有两个1的字符串
+		pattern = Pattern.compile("(\\s?[0|2-9]*11{1,}[0|2-9]*)");
 		matcher = pattern.matcher(txt);
 		while (matcher.find())
-			System.out.print(matcher.group()+" ");
-
+			list.remove(matcher.group().trim());
+		System.out.println(list.toString());
 	}
 
 	public static void main(String[] args) {
-		// matchA("11112341111144115411234");
+//		 matchA("111 11 123 1123 11211 1113");
 		// matchB("23 45 91 67 21 1");
 		// matchC("123 900 789 551 90 112");
-		matchD("11432425341143545657");
+		matchD("11 222 112 331");
 
 	}
 
