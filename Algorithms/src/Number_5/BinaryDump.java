@@ -4,7 +4,9 @@ import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * P532 将比特流打印在标准输出上（字符形式） args[0]:16 console输入：ABRACADABRA
+ * P532 将比特流打印在标准输出上（字符形式）
+ * args[0]:16 
+ * console输入：ABRACADABRA!  ,用ctrl+z流终止输入，快捷键无效见我的博客
  * 
  * @author he
  *
@@ -27,8 +29,8 @@ public class BinaryDump {
 		}
 
 		StdOut.println();
-		// 因为敲回车以后还会读取一个8比特的流（我猜测是按enter导致的）因此这里还需要减去8比特
-		StdOut.println(cn - 8 + " bit");
+		// 会多出一个16比特,因为Java采用的是unicode编码一个字符会占用两个字节，即16位（16比特）,完成某段的流输入需要按回车
+		StdOut.println(cn-16 + " bit");
 		/**
 		 * 结果：
 		 *  0100000101000010 
@@ -37,9 +39,8 @@ public class BinaryDump {
 		 *  0100010001000001 
 		 *  0100001001010010 
 		 *  0100000100001101 
-		 *  00001010 
+		 *  0000110100001010--->这16比特是按回车导致的
 		 *  96 bit
-		 * 
 		 */
 
 	}
