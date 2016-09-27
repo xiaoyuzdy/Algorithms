@@ -29,6 +29,8 @@ public class BinaryDump {
 		}
 
 		StdOut.println();
+		//如果你不是通过控制台获取数据，而是直接定向到文件则不需要再减去16bit，具体看你的操作，在控制台定向文件见我博客
+//		StdOut.println(cn+" bit");
 		// 会多出一个16比特,因为Java采用的是unicode编码一个字符会占用两个字节，即16位（16比特）,完成某段的流输入需要按回车
 		StdOut.println(cn-16 + " bit");
 		/**
