@@ -34,7 +34,7 @@ public class LongestString {
 	//检查字符串是否符合要求，即temp是由数组内的元素组成
 	public static boolean check(String[] str, String temp, int count) {
 		for (int i = str.length - count-1; i >=0 ; i--) {
-			if (temp.trim().contains(str[i])) {
+			if (temp.contains(str[i])) {
 				temp = temp.replace(str[i], "");// 去除已经包含的元素
 				i = str.length - count-1;// 重置
 			}
