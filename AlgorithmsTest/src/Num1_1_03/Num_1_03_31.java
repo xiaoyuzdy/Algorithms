@@ -86,6 +86,9 @@ class DoubleNode<T> {
 		Node node = getNode(index);
 		Node newnode = new Node();
 		newnode.item = item;
+		if(index==0){
+			first=newnode;
+		}
 		pushBefore(newnode, node);
 	}
 

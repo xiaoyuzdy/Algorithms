@@ -1,7 +1,7 @@
 package Numbe_1;
 
 /**
- *  单链表的反转 1<-2<-3<-4 ==> 1->2->3->4
+ * 单链表的反转 1<-2<-3<-4 ==> 1->2->3->4
  * 
  * @author he
  *
@@ -40,9 +40,9 @@ public class reverseLinkedlist {
 			return first;
 		}
 		Node second = first.next;
+		Node rest = reverseGcd(second);
 		second.next = first;
 		first.next = null;
-		Node rest = reverseGcd(second);
 		return rest;
 
 	}

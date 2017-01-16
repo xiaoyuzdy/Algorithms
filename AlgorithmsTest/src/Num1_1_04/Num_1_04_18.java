@@ -90,12 +90,11 @@ public class Num_1_04_18 {
 		int a3[] = { 1, 6, 7, 3, 5, 6, 4, 2 };
 		int a4[] = { 1, 2, 3, 4, 5, 6 };
 		int a5[] = { 5, 0, 3, 2, 1 };
-
 		int a6[] = new int[50];
 		for (int i = 0; i < a6.length; i++)
 			a6[i] = i;
 		StdRandom.shuffle(a6);
-		System.out.println(minElement(a6));
+		System.out.println(minElement(a5));
 	}
 
 }

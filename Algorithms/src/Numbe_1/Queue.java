@@ -14,7 +14,7 @@ public class Queue<Item> implements Iterable<Item> {
 	private Node last;// 尾部
 	private int N;// 记录元素数目
 
-	private class Node {
+	private  class Node {
 		Item item;
 		Node next;
 	}

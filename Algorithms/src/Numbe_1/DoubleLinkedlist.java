@@ -86,6 +86,9 @@ class DoubleNode<T> {
 		Node node = getNode(index);
 		Node newnode = new Node();
 		newnode.item = item;
+		if(index==0){
+			first=newnode;
+		}
 		pushBefore(newnode, node);
 	}
 
@@ -183,18 +186,18 @@ class DoubleNode<T> {
 public class DoubleLinkedlist {
 	public static void main(String[] args) {
 		DoubleNode<Integer> d = new DoubleNode<Integer>();
-		d.pushFirst(1);
+//		d.pushFirst(1);
 		d.pushFirst(2);
-		d.pushFirst(3);
-		// d.pushFirst(4);
+//		d.pushFirst(3);
+		 d.pushFirst(4);
 		d.pushLast(5);
 		// d.pushLast(6);
 		// System.out.println(d.size());
-		// d.pushBeforeOfIndex(10, 1);
+		 d.pushBeforeOfIndex(10, 0);
 		// d.pushAfterOfIndex(9, 0);
 		// d.popFirst();
 		// d.popFirst();
-		d.popOfIndex(0);
+//		d.popOfIndex(0);
 		// d.popOfIndex(3);
 		// d.popLast();
 		System.out.println(d.toString());
