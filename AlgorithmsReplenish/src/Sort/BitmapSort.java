@@ -12,6 +12,9 @@ package Sort;
  * 该二进制代表集合中数值的位置都置为1，其他位置都置为0，比如5，在二进制中第5个位置为1
  * 
  * @author he
+ * 
+ * 题目：
+ * 	文件中有1千万条记录，每条记录都是7位整数，再无其他数据，每个整数最多只出现一次，现在要求对整数排序
  *
  *
  *
@@ -21,7 +24,7 @@ public class BitmapSort {
 	private static final int SHIFT=5;//右移的次数，2^5=32；
 	private static final int BITSPERWPRD = 32;// int类型32位
 	private static final int MASK = 0x1F;// 31,用于取余
-	private static final int N = 1000000;//位长度
+	private static final int N = 10000000;//位长度
 	private static int a[] = new int[1 + N / BITSPERWPRD];//数组长度
 	
 	
@@ -91,6 +94,7 @@ public class BitmapSort {
 		}
 		
 		set(4);
+		set(6);
 		set(999);
 		set(10);
 		set(200);
@@ -102,6 +106,7 @@ public class BitmapSort {
 			}
 		}
 		
+	 
 	}
 	
 	
