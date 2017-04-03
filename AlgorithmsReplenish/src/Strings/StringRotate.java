@@ -18,7 +18,7 @@ public class StringRotate {
 		int n = text.length();
 		int end = gcd(rotdist, n);
 		char x[] = text.toCharArray();
-		char t;
+		char t;//ÓÃÓÚ»º´æ
 		int j;
 		int k;
 

@@ -22,10 +22,10 @@ import java.util.List;
 
 public class FindLackNumber {
 
-	private static int bit = 4;// 总共的位数，int 32位
+	private static int bit = 4;// 总共的位数，int 32位,这里为了方便举例，数字最大为15只占四位
 
 	private static Integer[] temp;
-	private static ArrayList<Integer> zero;// 存放0
+	private static List<Integer> zero;// 存放0
 	private static List<Integer> one;// 存放1
 	private static int number;
 
@@ -49,7 +49,7 @@ public class FindLackNumber {
 
 			if (zero.size() < one.size()) {
 				temp = (Integer[]) zero.toArray(new Integer[zero.size()]);
-				number |= 0 << bit;
+//				number |= 0 << bit;
 			} else {
 				temp = (Integer[]) one.toArray(new Integer[one.size()]);
 				number |= 1 << bit;
