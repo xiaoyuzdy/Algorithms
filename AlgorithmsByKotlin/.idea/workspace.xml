@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f0ff464-c20f-4cee-98e5-593b82cfa11e" name="Default" comment="commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Numbe_1/Queue.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/META-INF/AlgorithmsByKotlin.kotlin_module" afterPath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/META-INF/AlgorithmsByKotlin.kotlin_module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/StackKt.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/StackKt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/TKt$main$p$2.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/TKt$main$p$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/TKt.class" afterPath="$PROJECT_DIR$/out/production/AlgorithmsByKotlin/Numbe_1/TKt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Numbe_1/T.kt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AlgorithmsByKotlin.iml" afterPath="$PROJECT_DIR$/AlgorithmsByKotlin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Numbe_1/T.kt" afterPath="$PROJECT_DIR$/src/Numbe_1/T.kt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,54 +15,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Queue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Numbe_1/Queue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-154">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding>
-                <marker date="1476251629161" expanded="true" signature="46:53" ph="/**...*/" />
-                <marker date="1476251629161" expanded="true" signature="284:314" ph="{...}" />
-                <marker date="1476251629161" expanded="true" signature="348:520" ph="{...}" />
-                <marker date="1476251629161" expanded="true" signature="545:659" ph="{...}" />
-                <marker date="1476251629161" expanded="false" signature="686:691" ph=" { " />
-                <marker date="1476251629161" expanded="false" signature="705:708" ph=" }" />
-                <marker date="1476251629161" expanded="false" signature="728:733" ph=" { " />
-                <marker date="1476251629161" expanded="false" signature="742:745" ph=" }" />
-                <marker date="1476251629161" expanded="true" signature="781:851" ph="{...}" />
-                <marker date="1476251629161" expanded="true" signature="907:1106" ph="{...}" />
-                <marker date="1476251629161" expanded="false" signature="969:975" ph=" { " />
-                <marker date="1476251629161" expanded="false" signature="998:1002" ph=" }" />
-                <marker date="1476251629161" expanded="true" signature="1025:1102" ph="{...}" />
-                <marker date="1476251629161" expanded="true" signature="1148:1440" ph="{...}" />
-                <marker date="1476251629161" expanded="false" signature="1183:1191" ph="&lt;~&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Queue.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Numbe_1/Queue.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="T.kt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Numbe_1/T.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -617,18 +560,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Numbe_1/Queue.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Numbe_1/T.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Numbe_1/Queue.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
