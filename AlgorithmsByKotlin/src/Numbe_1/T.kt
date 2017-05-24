@@ -8,7 +8,7 @@ import java.io.File
 
 fun main(args: Array<String>) {
     var map = mapOf("a" to 1, "b" to 2)
-    var map2 = map.plus("c" to 3)//返回一个只读的map
+//    var map2 = map.plus("c" to 3)//返回一个只读的map
     //遍历map
     for ((k, v) in map) {
         println("key--->value: $k->$v")
