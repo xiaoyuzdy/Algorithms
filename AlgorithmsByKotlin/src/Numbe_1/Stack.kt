@@ -6,6 +6,7 @@ package Numbe_1
 
 typealias StackKt = Numbe_1.Stack<Any>
 
+
 fun main(args: Array<String>) {
     val stack = StackKt()
     stack.push(1)
