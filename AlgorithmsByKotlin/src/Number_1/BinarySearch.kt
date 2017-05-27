@@ -1,4 +1,4 @@
-package Numbe_1
+package Number_1
 
 /**
  * 二分查找

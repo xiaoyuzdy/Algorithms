@@ -1,10 +1,10 @@
-package Numbe_1
+package Number_1
 
 /**
  * Created by he on 2017/5/24.
  */
 
-typealias QueueKt=Numbe_1.Queue<Any>
+typealias QueueKt= Number_1.Queue<Any>
 
 fun main(args: Array<String>) {
     var queue=QueueKt()

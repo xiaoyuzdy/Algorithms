@@ -1,4 +1,4 @@
-package Numbe_1;
+package Number_1;
 
 import java.util.Iterator;
 

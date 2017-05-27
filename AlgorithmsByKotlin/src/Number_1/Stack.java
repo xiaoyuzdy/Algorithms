@@ -1,7 +1,6 @@
-package Numbe_1;
+package Number_1;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * 使用链表实现下压栈 在头结点实现push() 和pop()操作

@@ -1,10 +1,10 @@
-package Numbe_1
+package Number_1
 
 /**
  * Created by he on 2017/5/24.
  */
 
-typealias StackKt = Numbe_1.Stack<Any>
+typealias StackKt = Number_1.Stack<Any>
 
 
 fun main(args: Array<String>) {
