@@ -19,6 +19,9 @@ class Person {
         constructor(name: String, parent: Person) : this(name) {
         }
     }
+}
 
-
+fun main(args: Array<String>) {
+    var list= listOf(1,2,3,4,5)
+    list.any { it >2 }
 }

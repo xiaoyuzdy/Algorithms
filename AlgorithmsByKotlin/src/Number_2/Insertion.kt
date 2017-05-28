@@ -32,8 +32,4 @@ fun exch(a: Array<Int>, i: Int, j: Int) {
     a[j]=temp
 }
 
-fun show(a:Array<Int>){
-    for( i in a){
-        println(i)
-    }
-}
+
