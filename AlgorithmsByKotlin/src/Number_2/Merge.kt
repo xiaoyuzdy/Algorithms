@@ -5,7 +5,6 @@ package Number_2
  * Created by he on 2017/5/28.
  */
 
-
 fun main(args: Array<String>) {
     var a = arrayOf(1, 5, 2, 68, 5, 2, 10, 4)
     sort(a)
