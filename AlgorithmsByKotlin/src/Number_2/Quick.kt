@@ -6,7 +6,8 @@ package Number_2
  * Created by he on 2017/5/28.
  */
 
-class Quick {
+class Quick{
+
     fun sort(a: Array<Int>) {
         sort(a, 0, a.size - 1)
     }
