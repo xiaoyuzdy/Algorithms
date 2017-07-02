@@ -1,6 +1,7 @@
 package Num1_1_04;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -12,7 +13,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class Num_1_04_16_17 {
 
-	//最近的一对
+	// 最近的一对
 	public static String approach(double a[]) {
 		Arrays.sort(a);
 		double temp = 100000;
@@ -26,33 +27,60 @@ public class Num_1_04_16_17 {
 		return "min:" + temp + " index:" + index + "," + (index + 1);
 	}
 
-	//最远的一对
-	public static String distant(double a[]) {
+	// 最远的一对
 
-		Arrays.sort(a);
-		double temp = -100000.0;
-		int index = -1;
-		for (int i = 0; i < a.length - 1; i++) {
-			if (a[i + 1] - a[i] > temp) {
-				temp = a[i + 1] - a[i];
-				index = i;
+	public static String distant(double a[]) {
+		int minIndex = findMin(a);
+		int maxIndex = findMax(a);
+		return "max:" + (a[maxIndex] - a[minIndex]) + " minIndex:" + minIndex + ", maxIndex: " + maxIndex;
+	}
+
+	/**
+	 * 
+	 * @param src
+	 * @return min index
+	 */
+	private static int findMin(double[] src) {
+		double minValue = Double.MAX_VALUE;
+		int minIndex = -1;
+		for (int i = 0; i < src.length; i++) {
+			if (src[i] < minValue) {
+				minValue = src[i];
+				minIndex = i;
 			}
 		}
-		return "max:" + temp + " index:" + index + "," + (index + 1);
+		return minIndex;
+	}
+
+	/**
+	 * 
+	 * @return max index
+	 */
+	private static int findMax(double[] src) {
+		double maxValue = Double.MIN_VALUE;
+		int maxIndex = src.length - 1;
+		for (int i = 0; i < src.length; i++) {
+			if (src[i] > maxValue) {
+				maxValue = src[i];
+				maxIndex = i;
+			}
+		}
+		return maxIndex;
 	}
 
 	public static void main(String[] args) {
-//		 double a[]={1.0,4.0,2.0,15.0,7.0};
-//		 System.out.println(approach(a)); //min:1.0    0,1
-//		 System.out.println(distant(a));  // max:8.0   3,4
-		
+		// double a[]={1.0,4.0,2.0,15.0,7.0};
+		// System.out.println(approach(a)); //min:1.0 0,1
+		// System.out.println(distant(a)); // max:8.0 3,4
+
 		int N = 100;
 		double b[] = new double[N];
 		for (int i = 0; i < N; i++) {
-			b[i] = StdRandom.uniform(10.2, 1000.8);
+			b[i] =Math.random()*1000;
 		}
-		System.out.println(approach(b));
+		
 		System.out.println(distant(b));
+//		System.out.println(approach(b));
 	}
 
 }

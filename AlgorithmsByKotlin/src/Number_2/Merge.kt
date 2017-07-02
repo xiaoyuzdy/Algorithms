@@ -6,8 +6,9 @@ package Number_2
  */
 
 class Merge{
-
+ lateinit var aux: IntArray
     fun sort(a: Array<Int>) {
+        aux = IntArray(a.size)
         sort(a, 0, a.size - 1)
     }
 
@@ -21,7 +22,6 @@ class Merge{
     }
 
     fun merge(a: Array<Int>, lo: Int, hi: Int, mid: Int) {
-        var aux = IntArray(a.size)
         var i = lo
         var j = mid + 1
         for (k in lo..hi) {
