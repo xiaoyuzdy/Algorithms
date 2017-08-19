@@ -18,7 +18,7 @@ class BinarySearchChange {
 				last = mid - 1;
 			// 修改,mid-1!=-1 防止数组越界
 			else if (key == a[mid] && mid - 1 != -1 && a[mid - 1] == key) {
-				last = mid;
+				last = mid - 1;
 			} else if (key > a[mid])
 				first = mid + 1;
 			else
