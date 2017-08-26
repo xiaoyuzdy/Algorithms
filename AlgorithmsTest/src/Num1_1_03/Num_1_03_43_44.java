@@ -1,36 +1,32 @@
-package Num1_1_03;
+package chapterOne.examination;
+
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
- * P106 T43 T44 参考前面的习题基本上一样的
- * 
- * 
- * @author he
- *
+ * Created by tboevil on 5/23/17.
  */
-public class Num_1_03_43_44 {
-	private static List<File> directory = new ArrayList<File>();
+public class L1343 {
+    public static Queue<String> fileList = new Queue<String>();
+    public static void getFiles(File file,String s){
+        s = s+"  ";
+        for (File subFile:file.listFiles()){
+            if (subFile.isDirectory()){
+                fileList.enqueue(s+subFile.toString());
+                getFiles(subFile,s);
+            }
+            else fileList.enqueue(s+subFile.toString());
+        }
+    }
+    public static void main(String[] args) {
+        File file = new File("/home/tboevil/work/fanyi");
+        getFiles(file,"");
+        for (String curFile:fileList){
+            StdOut.println(curFile);
+        }
 
-	public static List<File> getFile(File file) {
-		for (File file2 : file.listFiles()) {
-			if (file2.isDirectory()) {
-				directory.add(file2);
-				getFile(file2);
-			} else {
-				directory.add(file2);
-			}
-
-		}
-
-		return directory;
-	}
-	
-	public static void main(String[] args) {
-		File file=new File("F:/IOtest");//路径自己设置
-		System.out.println(getFile(file));
-	}
-
+    }
 }
