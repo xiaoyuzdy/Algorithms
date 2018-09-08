@@ -2,6 +2,8 @@ package binary_search;
 
 /**
  * 有序数组，利用二分查找在二维数组中查找一个数
+ * 时间复杂度 O(lgN)
+ * 空间复杂度O(1)
  *
  * @author Zcc
  * Create on  2018/9/8
